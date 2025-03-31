@@ -1,32 +1,38 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const cors = require("cors");
 
-dotenv.config();
+// Import các routes mới
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/UserRoutes");
+const phongTroRoutes = require("./routes/phongTro");
+const diaDiemRoutes = require("./routes/DiaDiem");
+// (Giữ lại nếu bạn vẫn muốn sử dụng route phongTro)
 
 const app = express();
+
+// ------------------- Middlewares -------------------
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// Import routes
-const authRoutes = require("./routes/auth");
-// const khachHangRoutes = require("./routes/khachHang");
-// const nhanVienRoutes = require("./routes/nhanVien");
-const phongTroRoutes = require("./routes/phongTro");
-
-// Kết nối MongoDB
+// ------------------- Kết nối MongoDB -------------------
 const PORT = process.env.PORT || 3001;
 mongoose
-    .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        app.listen(PORT, () => console.log(`✅ Server đang chạy trên cổng ${PORT}`));
+    .connect(process.env.MONGO_URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
     })
-    .catch((err) => console.log(`❌ Lỗi kết nối MongoDB: ${err}`));
+    .then(() => {
+        app.listen(PORT, () => console.log(`Server đang chạy trên cổng ${PORT}`));
+    })
+    .catch((err) => console.error(`❌ Lỗi kết nối MongoDB: ${err}`));
 
-// Sử dụng routes
-app.use("/auth", authRoutes);
-// app.use("/khachhang", khachHangRoutes);
-// app.use("/nhanvien", nhanVienRoutes);
-app.use("/phongtro", phongTroRoutes);
+// ------------------- Sử dụng routes -------------------
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/room", phongTroRoutes);
+app.use("/api/diadiem", diaDiemRoutes);
+module.exports = app; 

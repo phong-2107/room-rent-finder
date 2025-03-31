@@ -3,7 +3,12 @@ const mongoose = require("mongoose");
 const PhongTroSchema = new mongoose.Schema(
     {
         tieuDe: { type: String, required: true },
-        diaChi: { type: String, required: true },
+        diaChiCuThe: { type: String, required: true },
+        diaDiem: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "DiaDiem",
+            required: true,
+        },
         gia: { type: Number, required: true },
         dienTich: { type: Number, required: true },
         moTa: { type: String },

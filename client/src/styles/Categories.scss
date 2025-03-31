@@ -1,84 +1,134 @@
-@import "./variables.scss";
-@import "./breakpoints.scss";
-
 .categories {
-  padding: 50px 60px;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: $lightgrey;
+  gap: 40px;
+  // height: 100%;
+  left: 0;
+  padding: 50px 30px;
+  position: relative;
+  width: 1440px;
 
-  @include sm {
-    padding: 50px 20px;
-  }
-
-  h1 {
-    color: $blue;
-    font-size: 40px;
-    font-weight: 800;
-    margin-bottom: 15px;
-  }
-
-  p {
-    max-width: 700px;
-    font-size: 20px;
-  }
-
-  .categories_list {
+  .menu-categories {
+    align-items: center;
     display: flex;
-    flex-wrap: wrap;
-    padding: 50px 0;
-    justify-content: center;
-    gap: 20px;
+    flex-direction: column;
+    gap: 15px;
+    height: 1393px;
+    margin-bottom: -50px;
+    position: relative;
+    width: 1120px;
 
-    a {
-      text-decoration: none;
+    .content {
+      align-items: center;
+      align-self: stretch;
+      display: flex;
+      gap: 9px;
+      height: 43px;
+      position: relative;
+      width: 100%;
+
+      .text-wrapper {
+        color: #000000;
+        font-family: "Inter", Helvetica;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0;
+        line-height: 20px;
+        position: relative;
+        white-space: nowrap;
+        width: fit-content;
+      }
+
+      .div {
+        color: var(--x-006-1df);
+        font-family: "Inter", Helvetica;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0;
+        line-height: 20px;
+        position: relative;
+        white-space: nowrap;
+        width: fit-content;
+      }
+
+      .group {
+        height: 31px;
+        position: relative;
+        width: 127.28px;
+      }
+
+      .button-instance {
+        display: flex !important;
+        width: 127px !important;
+      }
+
+      .design-component-instance-node {
+        margin-left: -1.86px !important;
+        margin-right: -1.86px !important;
+      }
     }
 
-    .category {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 250px;
-      height: 200px;
-      cursor: pointer;
+    .infor {
+      height: 1335px;
+      left: 0;
+      position: absolute;
+      top: 43px;
+      width: 1120px;
 
-      img {
+      .cards {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: 1335px;
+        justify-content: center;
+        left: 0;
         position: absolute;
-        width: 100%;
-        height: 100%;
+        top: 0;
+        width: 629px;
       }
 
-      .overlay {
+      .categories-title {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: 1003px;
+        justify-content: center;
+        left: 629px;
         position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.55);
-        transition: 0.3s ease-in-out;
+        top: 0;
+        width: 485px;
       }
 
-      &_text {
-        position: relative;
-        color: white;
-
-        &_icon {
-          font-size: 45px;
-        }
-
-        p {
-          font-weight: 600;
-        }
+      .total-area {
+        height: 38px;
+        left: 15px;
+        position: absolute;
+        top: 678px;
+        width: 440px;
       }
 
-      &:hover {
-        .overlay {
-          width: 80%;
-          height: 80%;
-        }
+      .type-house-instance {
+        height: 238px !important;
       }
 
+      .type-house-2 {
+        top: 66px !important;
+      }
+
+      .type-house-3 {
+        margin-right: -42px !important;
+      }
+
+      .type-house-4 {
+        margin-right: -41px !important;
+      }
+
+      .type-house-5 {
+        margin-right: -49px !important;
+      }
     }
   }
 }

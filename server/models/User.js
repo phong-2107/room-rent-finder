@@ -24,10 +24,10 @@ UserSchema.pre("save", async function (next) {
     next();
 });
 
-// Kiểm tra mật khẩu (KHÔNG hash lại, chỉ so sánh)
+// Kiểm tra mật khẩu 
 UserSchema.methods.kiemTraMatKhau = async function (nhapMatKhau) {
     matKhauhash = await bcrypt.hash(nhapMatKhau, 10);
-    console.log("matKhauhash: ", matKhauhash);
+    // console.log("matKhauhash: ", matKhauhash);
     return await bcrypt.compare(nhapMatKhau, this.matKhau);
 };
 

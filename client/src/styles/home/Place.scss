@@ -1,0 +1,27 @@
+.place {
+    align-items: center;
+    background-color: var(--soft-grey);
+    border-radius: 8px;
+    display: inline-flex;
+    gap: 15px;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+    
+    .tp-h-ch-minh {
+    color: #000000;
+    font-family: "Gantari", Helvetica;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 20px;
+    margin-top: -1.00px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+
+    &:hover {
+      color: var(--x-006-1df);
+    }
+  }
+}

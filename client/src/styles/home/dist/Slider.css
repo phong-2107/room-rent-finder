@@ -1,0 +1,44 @@
+.title-BG {
+  background-image: url(https://c.animaapp.com/m8uerufgJVBeV6/img/rectangle-1.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  min-height: 800px;
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+  right: 50%;
+  margin-right: -50vw;
+}
+
+.slider {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  left: 0;
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
+.slider .overlap-group-wrapper {
+  height: 820px;
+  margin-right: -2px;
+  position: relative;
+  width: 1442px;
+}
+.slider .titleSlider {
+  color: var(--white);
+  font-family: "Inter", Helvetica;
+  font-size: 52px;
+  font-weight: 900;
+  left: 342px;
+  letter-spacing: 0;
+  line-height: 60px;
+  position: absolute;
+  top: 418px;
+  white-space: nowrap;
+  width: 781px;
+}
