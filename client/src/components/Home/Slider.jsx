@@ -1,7 +1,5 @@
 import React from "react";
 import "../../styles/home/Slider.scss";
-import Selectarrow1 from "../icons/Selectarrow1";
-import Selectarrow2 from "../icons/Selectarrow2";
 import Find from "./Find";
 const Slider = () => {
     return (
