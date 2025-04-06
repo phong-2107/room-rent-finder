@@ -67,12 +67,14 @@ const Categories = () => {
     return (
         <div className="categories">
             <div className="menu-categories">
-                <div className="content">
+                <div className="breadcrumbs">
                     <div className="text-wrapper">Home</div>
 
                     <div className="text-wrapper">/</div>
 
                     <div className="div">Phòng trọ</div>
+
+                    <div className="text-wrapper">/</div>
 
                     <div className="group">
                         <LocationButton

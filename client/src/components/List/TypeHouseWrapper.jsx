@@ -14,7 +14,7 @@ const TypeHouseWrapper = () => {
                 <div className="total-area-8">
                     <div className="total-area-9">
                         <div className="svg">
-                            <img className="layer" alt="Layer" />
+                            <img className="layer" alt="Layer" src="assets/images/location.png"/>
                         </div>
 
                         <div className="text-6">
@@ -26,7 +26,7 @@ const TypeHouseWrapper = () => {
                 <div className="total-area-10">
                     <div className="total-area-9">
                         <div className="svg">
-                            <img className="layer" alt="Layer" />
+                            <img className="layer" alt="Layer" src="assets/images/location.png"/>
                         </div>
 
                         <div className="text-6">
@@ -38,7 +38,7 @@ const TypeHouseWrapper = () => {
                 <div className="total-area-11">
                     <div className="total-area-9">
                         <div className="svg">
-                            <img className="layer" alt="Layer" />
+                            <img className="layer" alt="Layer" src="assets/images/location.png"/>
                         </div>
 
                         <div className="text-6">
@@ -50,7 +50,7 @@ const TypeHouseWrapper = () => {
                 <div className="total-area-12">
                     <div className="total-area-9">
                         <div className="svg">
-                            <img className="layer" alt="Layer" />
+                            <img className="layer" alt="Layer" src="assets/images/location.png"/>
                         </div>
 
                         <div className="text-6">
@@ -62,7 +62,7 @@ const TypeHouseWrapper = () => {
                 <div className="total-area-13">
                     <div className="total-area-9">
                         <div className="svg">
-                            <img className="layer" alt="Layer" />
+                            <img className="layer" alt="Layer" src="assets/images/location.png"/>
                         </div>
 
                         <div className="text-6">
@@ -74,7 +74,7 @@ const TypeHouseWrapper = () => {
                 <div className="total-area-14">
                     <div className="total-area-9">
                         <div className="svg">
-                            <img className="layer" alt="Layer" />
+                            <img className="layer" alt="Layer" src="assets/images/location.png"/>
                         </div>
 
                         <div className="text-6">
@@ -86,7 +86,7 @@ const TypeHouseWrapper = () => {
                 <div className="total-area-15">
                     <div className="total-area-9">
                         <div className="svg">
-                            <img className="layer" alt="Layer" />
+                            <img className="layer" alt="Layer" src="assets/images/location.png" />
                         </div>
 
                         <div className="text-6">
@@ -98,7 +98,7 @@ const TypeHouseWrapper = () => {
                 <div className="total-area-16">
                     <div className="total-area-9">
                         <div className="svg">
-                            <img className="layer" alt="Layer" />
+                            <img className="layer" alt="Layer" src="assets/images/location.png" />
                         </div>
 
                         <div className="text-6">
@@ -110,7 +110,7 @@ const TypeHouseWrapper = () => {
                 <div className="total-area-17">
                     <div className="total-area-9">
                         <div className="svg">
-                            <img className="layer" alt="Layer" />
+                            <img className="layer" alt="Layer" src="assets/images/location.png"/>
                         </div>
 
                         <div className="text-6">

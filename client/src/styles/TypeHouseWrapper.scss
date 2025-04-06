@@ -273,10 +273,11 @@
         font-weight: 500;
         letter-spacing: 0;
         line-height: 20px;
-        margin-right: -80px;
+        margin-right: -58px;
         margin-top: -1px;
         position: relative;
-        width: 92px;
+        white-space: nowrap;
+        width: fit-content;
       }
     }
   
@@ -291,6 +292,20 @@
       position: absolute;
       top: 266px;
       width: 440px;
+      
+      .text-wrapper-30 {
+        color: #100e2c;
+        font-family: "Inter", Helvetica;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 20px;
+        margin-right: -58px;
+        margin-top: -1px;
+        position: relative;
+        white-space: nowrap;
+        width: fit-content;
+      }
     }
   
     .total-area-17 {
@@ -304,6 +319,20 @@
       position: absolute;
       top: 304px;
       width: 440px;
+
+      .text-wrapper-30 {
+        color: #100e2c;
+        font-family: "Inter", Helvetica;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 20px;
+        margin-right: -58px;
+        margin-top: -1px;
+        position: relative;
+        white-space: nowrap;
+        width: fit-content;
+      }
     }
   }
   

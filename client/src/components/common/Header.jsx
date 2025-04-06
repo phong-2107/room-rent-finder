@@ -54,8 +54,8 @@ const Header = () => {
                             <a href="/news" className="text-wrapper-8">
                                 Tin Tức
                             </a>
-                            <a href="/dia-diem" className="text-wrapper-8">
-                                Địa Điểm
+                            <a href="/contact" className="text-wrapper-8">
+                                Liên Hệ
                             </a>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ const Header = () => {
                             <>
                                 <a href="/login" className="SIGN-IN">Đăng Nhập</a>
                                 <div className="SIGN-UP-wrapper">
-                                    <a href="/signup" className="SIGN-UP">Đăng Ký</a>
+                                    <a href="/register" className="SIGN-UP">Đăng Ký</a>
                                 </div>
                             </>
                         )}

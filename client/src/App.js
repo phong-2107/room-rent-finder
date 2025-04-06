@@ -8,11 +8,17 @@ import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
 import NewsPage from './pages/NewsPage';
 import SignIn from './pages/user/SignIn';
+import SignUp from './pages/user/SignUp';
+import ContactPage from './pages/ContactPage';
 // ... import thêm các trang khác
 
 // Import layout
 import MainLayout from './layouts/MainLayout';
 import AuthLayout from './layouts/AuthLayout';
+
+import "./App.css";
+import ForgotPassword from './pages/user/ForgotPassword';
+
 
 function App() {
   return (
@@ -23,10 +29,15 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/list" element={<ListPage />} />
             <Route path="/news" element={<NewsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+
           </Route>
 
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<SignIn />} />
+            <Route path="/register" element={<SignUp />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+
           </Route>
         </Routes>
       </BrowserRouter>

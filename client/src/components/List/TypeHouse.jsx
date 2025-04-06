@@ -38,7 +38,7 @@ const TypeHouse = ({
                     </div>
                 </div>
 
-                <div className="total-area-5">
+                <div className="total-area-wrapper">
                     <div className="total-area-4">
                         <img
                             className="frame-17"
@@ -54,7 +54,7 @@ const TypeHouse = ({
                     </div>
                 </div>
 
-                <div className="total-area-6">
+                <div className="total-area-wrapper">
                     <div className="total-area-4">
                         <img
                             className="frame-17"
@@ -63,12 +63,12 @@ const TypeHouse = ({
                         />
 
                         <div className="text-4">
-                            <div className={`nh-nguy-n-c-n ${divClassName1}`}>{text3}</div>
+                            <div className={`text-wrapper-23 ${divClassName1}`}>{text3}</div>
                         </div>
                     </div>
                 </div>
 
-                <div className="total-area-7">
+                <div className="total-area-wrapper">
                     <div className="total-area-4">
                         <img
                             className="frame-17"
@@ -77,7 +77,7 @@ const TypeHouse = ({
                         />
 
                         <div className="text-4">
-                            <div className={`k-t-c-x ${divClassName2}`}>{text4}</div>
+                            <div className={`text-wrapper-23 ${divClassName2}`}>{text4}</div>
                         </div>
                     </div>
                 </div>

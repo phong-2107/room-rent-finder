@@ -12,7 +12,7 @@ const Location = () => {
                     <p className="p">Thuê Trọ Theo Địa Điểm</p>
                 </div> */}
 
-                <div className="content">
+                <div className="content-location">
                     <div className="location-left">
                         <img
                             className="image"
