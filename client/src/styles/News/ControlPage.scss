@@ -1,0 +1,46 @@
+.control-page {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 0;
+    padding: 20px 130px;
+    position: absolute;
+    top: 117px;
+    width: 1440px;
+  
+    .trang-ch-tin-t-c-wrapper {
+      align-items: center;
+      display: flex;
+      gap: 10px;
+      height: 30px;
+      justify-content: center;
+      padding: 10px 10px 11px;
+      position: relative;
+      width: 256px;
+    }
+  
+    .trang-ch-tin-t-c {
+      color: transparent;
+      font-family: "Inter", Helvetica;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 30px;
+      margin-bottom: -9.5px;
+      margin-left: -4px;
+      margin-right: -4px;
+      margin-top: -11.5px;
+      position: relative;
+      width: 244px;
+    }
+  
+    .text-wrapper-8 {
+      color: #000000;
+    }
+  
+    .text-wrapper-9 {
+      color: #1a5cff;
+    }
+  }
+  

@@ -1,20 +1,47 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
+import { Provider } from 'react-redux';
+import store from './redux/state'; // nếu bạn lưu redux store ở đây
+
+// Import các trang
 import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
+import ListPage from './pages/ListPage';
+import NewsPage from './pages/NewsPage';
+import SignIn from './pages/user/SignIn';
+import SignUp from './pages/user/SignUp';
+import ContactPage from './pages/ContactPage';
+// ... import thêm các trang khác
+
+// Import layout
+import MainLayout from './layouts/MainLayout';
+import AuthLayout from './layouts/AuthLayout';
+
+import "./App.css";
+import ForgotPassword from './pages/user/ForgotPassword';
+
 
 function App() {
   return (
-    <div >
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/list" element={<ListPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+
+          </Route>
+
+          <Route element={<AuthLayout />}>
+            <Route path="/login" element={<SignIn />} />
+            <Route path="/register" element={<SignUp />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+
+          </Route>
         </Routes>
       </BrowserRouter>
-    </div>
+    </Provider>
   );
 }
 

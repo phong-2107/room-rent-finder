@@ -1,0 +1,103 @@
+.card {
+    width: 290px;
+    height: 396px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Label 'Hot' */
+  .card .label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #FF3B30;
+    color: white;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 10px;
+    z-index: 10;
+  }
+  
+  .card .content {
+    padding: 15px;
+    flex-grow: 1;
+  }
+  
+  .card .content h3 {
+    font-size: 20px;
+    color: #100E2C;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .card .content p {
+    color: #7A7A7A;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  .card .price {
+    color: #FF3B30;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .card .info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .card .info .item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .card .info .item i {
+    font-size: 16px;
+    color: #7A7A7A;
+    margin-right: 5px;
+  }
+  
+  .card .info .item span {
+    font-size: 14px;
+    color: #7A7A7A;
+  }
+  
+  /* Border Styling */
+  .card .content {
+    border-top: 1px solid #e1e1e1;
+    padding-top: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .card {
+      width: 100%;
+      height: auto;
+    }
+  
+    .card img {
+      height: 180px;
+    }
+  }
+  
+  /* Hover Effect */
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  

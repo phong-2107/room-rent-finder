@@ -1,0 +1,83 @@
+.news {
+    align-items: flex-start;
+    background-color: #ffffff;
+    border: 1px solid #d5d5d5;
+    border-radius: 8px;
+    box-shadow: 1px 1px 7px #00000040;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 450px;
+    position: relative;
+    width: 370px;
+  
+    .frame-wrapper {
+      align-items: flex-start;
+      align-self: stretch;
+      background-color: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      flex: 0 0 auto;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      width: 100%;
+    }
+  
+    .frame-13 {
+      background-image: url(https://c.animaapp.com/m8ua2uv9lJVQIw/img/rectangle-2-12.png);
+      background-position: 50% 50%;
+      background-size: cover;
+      height: 241px;
+      position: relative;
+      width: 370px;
+    }
+  
+    .header-2 {
+      align-items: flex-start;
+      align-self: stretch;
+      background-color: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      height: 199px;
+      padding: 6px 12px;
+      position: relative;
+      width: 100%;
+    }
+  
+    .frame-14 {
+      align-items: flex-start;
+      display: inline-flex;
+      flex: 0 0 auto;
+      gap: 10px;
+      position: relative;
+    }
+  
+    .p {
+      color: #000000;
+      font-family: "Inter", Helvetica;
+      font-size: 15px;
+      font-weight: 500;
+      height: 59px;
+      letter-spacing: 0;
+      line-height: 30px;
+      margin-top: -1px;
+      position: relative;
+      width: 346px;
+    }
+  
+    .text-wrapper-12 {
+      color: #000000;
+      font-family: "Inter", Helvetica;
+      font-size: 12px;
+      font-weight: 300;
+      height: 90px;
+      letter-spacing: 0;
+      line-height: 30px;
+      margin-top: -1px;
+      position: relative;
+      width: 346px;
+    }
+  }
+  
