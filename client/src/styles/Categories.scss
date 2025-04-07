@@ -7,7 +7,7 @@
   left: 0;
   padding: 50px 30px;
   position: relative;
-  width: 1440px;
+  width: 100%;
 
   .menu-categories {
     align-items: center;
@@ -19,7 +19,7 @@
     position: relative;
     width: 1120px;
 
-    .content {
+    .breadcrumbs {
       align-items: center;
       align-self: stretch;
       display: flex;
@@ -27,47 +27,47 @@
       height: 43px;
       position: relative;
       width: 100%;
-
+  
       .text-wrapper {
-        color: #000000;
-        font-family: "Inter", Helvetica;
-        font-size: 16px;
-        font-weight: 700;
-        letter-spacing: 0;
-        line-height: 20px;
-        position: relative;
-        white-space: nowrap;
-        width: fit-content;
+          color: #000000;
+          font-family: "Inter", Helvetica;
+          font-size: 16px;
+          font-weight: 700;
+          letter-spacing: 0;
+          line-height: 20px;
+          position: relative;
+          white-space: nowrap;
+          width: fit-content;
       }
-
+  
       .div {
-        color: var(--x-006-1df);
-        font-family: "Inter", Helvetica;
-        font-size: 16px;
-        font-weight: 700;
-        letter-spacing: 0;
-        line-height: 20px;
-        position: relative;
-        white-space: nowrap;
-        width: fit-content;
+          color: var(--x-006-1df);
+          font-family: "Inter", Helvetica;
+          font-size: 16px;
+          font-weight: 700;
+          letter-spacing: 0;
+          line-height: 20px;
+          position: relative;
+          white-space: nowrap;
+          width: fit-content;
       }
-
+  
       .group {
-        height: 31px;
-        position: relative;
-        width: 127.28px;
+          height: 31px;
+          position: relative;
+          width: 127.28px;
       }
-
+  
       .button-instance {
-        display: flex !important;
-        width: 127px !important;
+          display: flex !important;
+          width: 127px !important;
       }
-
+  
       .design-component-instance-node {
-        margin-left: -1.86px !important;
-        margin-right: -1.86px !important;
+          margin-left: -1.86px !important;
+          margin-right: -1.86px !important;
       }
-    }
+  }
 
     .infor {
       height: 1335px;

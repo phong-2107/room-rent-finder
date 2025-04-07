@@ -17,10 +17,8 @@ const SignIn = () => {
     const handleLogin = async () => {
         try {
             const data = await login(form.username, form.password);
-            // saveToken(data.token, form.remember);
-            // saveUser(data.user, form.remember); 
-            saveToken(data.token, true);
-            saveUser(data.user, true);
+            saveToken(data.token, form.remember);
+            saveUser(data.user, form.remember);
             navigate("/");
         } catch (err) {
             setError(err.message);
@@ -28,23 +26,23 @@ const SignIn = () => {
     };
 
     return (
-        <div className="sign-in">
-            <div className="container">
-                <div className="logo">
-                    <a href="/"><img src="/assets/images/logo1.png" alt="logo" /></a>
+        <div className="page-wrapper">
+            <div className="sign-in">
+                <div className="container">
+                    <div className="logo">
+                        <a href="/"><img src="/assets/images/logo1.png" alt="logo" /></a>
+                    </div>
+                    <AuthForm
+                        type="signIn"
+                        form={form}
+                        onChange={handleChange}
+                        onSubmit={handleLogin}
+                        error={error}
+                    />
                 </div>
-                <AuthForm
-                    username={form.username}
-                    password={form.password}
-                    remember={form.remember}
-                    onChange={handleChange}
-                    onSubmit={handleLogin}
-                    error={error}
-                />
             </div>
-
-            <div className="footer">
-                <p>Được tạo bởi</p>
+            <div className="footer-login">
+                <p className="footer-copy">Được tạo bởi</p>
                 <div className="footer-logo">
                     <img src="/assets/images/logo1.png" alt="logo" />
                 </div>

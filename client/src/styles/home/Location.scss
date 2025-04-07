@@ -2,7 +2,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 39px;
+    gap: 550px;
     // left: 0;
     padding: 50px 0;
     position: relative;
@@ -49,11 +49,16 @@
       gap: 19px;
       width: 100%;
     
-    .content {
+    .content-location {
       display: flex;
       justify-content: space-between;
       align-items: stretch;
-      width: 100%;
+      position: absolute;
+      height: 2151px;
+      left: 0;
+      position: absolute;
+      top: 167px;
+      width: 1440px;
 
         .location-left {
           align-items: flex-start;

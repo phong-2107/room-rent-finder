@@ -8,59 +8,9 @@
     .div-2 {
       width: 100%;
       height: 3350px; 
-      background-color: #ffffff;
+      background-color: hsl(0, 0%, 100%);
       position: relative;
-      .overlap {
-        width: 100%;
-        height: auto; 
-  
-        .maps {
-          // Căn giữa theo chiều ngang
-          display: flex;
-          flex-direction: column;
-          align-items: center; 
-          gap: 39px;
-          padding: 50px 0;
-          width: 100%; 
-          height: auto; // Thay vì cố định
-  
-          .title-5 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: auto; // Thay cho 373px (có thể tuỳ chọn)
-            // height: auto;
-            .text-wrapper-26 {
-              color: #000;
-              font-family: "Inter", Helvetica;
-              font-size: 36px;
-              font-weight: 700; 
-              line-height: 20px;
-              white-space: nowrap;
-              // Bỏ margin: -1px -21px 0 nếu không cần
-            }
-          }
-  
-          .image-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            border-radius: 15px;
-            overflow: hidden;
-            // width: 1136px; // Tuỳ bạn
-            width: 80%; // ví dụ co giãn theo màn hình
-            max-width: 1136px; // để không vượt quá
-            // height: 450px; => có thể thay do nội dung
-            margin-bottom: 20px;
-  
-            .image-3 {
-              width: 100%;
-              height: 450px;
-              object-fit: cover;
-            }
-          }
-        }
-      }
+      
     }
   }
   

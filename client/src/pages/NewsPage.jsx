@@ -1,6 +1,7 @@
 import React from "react";
 import Content from "../components/news/Content";
 import ControlPage from "../components/news/ControlPage";
+import Map from "../components/Home/Map";
 
 import "../styles/News/News.scss";
 
@@ -10,19 +11,7 @@ const NewsPage = () => {
             <div className="news-3">
                 <ControlPage />
                 <Content />
-                <div className="maps">
-                    <div className="title-2">
-                        <p className="text-wrapper-13">VỊ TRÍ DỰ ÁN NỔI BẬT</p>
-                    </div>
-
-                    <div className="map">
-                        <img
-                            className="image"
-                            alt="Image"
-                            src="https://c.animaapp.com/m8ua2uv9lJVQIw/img/image.png"
-                        />
-                    </div>
-                </div>
+                <Map></Map>
             </div>
         </div>
     );
