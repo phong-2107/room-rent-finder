@@ -190,6 +190,10 @@
     font-weight: 600;
     border: none;
     cursor: pointer;
+
+    &:hover {
+      opacity: 0.9;
+    }
   }
   
   .contact-info-section {
