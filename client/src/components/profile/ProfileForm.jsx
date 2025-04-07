@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const ProfileForm = () => {
+const ProfileForm = ({ user }) => {
   const [formData, setFormData] = useState({
-    displayName: "Khanh Hồ",
-    email: "Khanh Hồ",
-    phone: "Khanh Hồ",
-    address: "Quận 9 TPHCM"
+    displayName: "",
+    email: "",
+    phone: "",
+    address: "",
   });
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        displayName: user.hoTen || "",
+        email: user.email || "",
+        phone: user.soDienThoai || "",
+        address: user.diaChi || "",
+      });
+    }
+  }, [user]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -43,7 +54,9 @@ const ProfileForm = () => {
             <div className="profile-form__avatar-label">
               <div className="profile-form__label-text">Ảnh đại diện</div>
             </div>
-            <div className="profile-form__avatar-image" />
+            <div className="profile-form__avatar-image">
+              {user?.anhDaiDien && <img src={user.anhDaiDien} alt="avatar" />}
+            </div>
           </div>
         </div>
 
@@ -93,12 +106,15 @@ const ProfileForm = () => {
             />
           </div>
         </div>
-        
+
         <div className="profile-form__button-wrapper">
-            <a href="/changepassword" className="profile-form__button profile-form__button--secondary">Đổi mật khẩu</a>
-            <button className="profile-form__button profile-form__button--primary">Lưu thay đổi</button>
+          <a href="/changepassword" className="profile-form__button profile-form__button--secondary">
+            Đổi mật khẩu
+          </a>
+          <button className="profile-form__button profile-form__button--primary">
+            Lưu thay đổi
+          </button>
         </div>
-        
       </div>
     </div>
   );

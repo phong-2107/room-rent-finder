@@ -1,94 +1,77 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/Categories.scss";
 import CardRow from "../cards/CardRow";
 import TypeHouseWrapper from "./TypeHouseWrapper";
 import TypeHouse from "./TypeHouse";
 import LocationButton from "../buttons/LocationFilterButtons";
 
-const Categories = () => {
+const Categories = ({ diaDiemId }) => {
+    const [rooms, setRooms] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [tinhThanh, setTinhThanh] = useState("");
 
-    const mockRooms = [
-        {
-            id: 1,
-            name: "Phòng trọ số 1",
-            location: "Dĩ An, Bình Dương",
-            price: "6 Triệu",
-            area: 60,
-            imageUrl: "https://example.com/room1.jpg",
-            updatedTime: "1 giờ trước",
-        },
-        {
-            id: 2,
-            name: "Phòng trọ số 2",
-            location: "Quận 1, TP. HCM",
-            price: "4 Triệu",
-            area: 25,
-            imageUrl: "https://example.com/room2.jpg",
-            updatedTime: "2 giờ trước",
-        },
-        {
-            id: 3,
-            name: "Phòng trọ số 3",
-            location: "Thủ Đức, TP. HCM",
-            price: "3 Triệu",
-            area: 20,
-            imageUrl: "https://example.com/room3.jpg",
-            updatedTime: "3 giờ trước",
-        },
-        {
-            id: 4,
-            name: "Phòng trọ số 4",
-            location: "Bình Thạnh, TP. HCM",
-            price: "5 Triệu",
-            area: 40,
-            imageUrl: "https://example.com/room4.jpg",
-            updatedTime: "5 giờ trước",
-        },
-        {
-            id: 5,
-            name: "Phòng trọ số 5",
-            location: "Thủ Dầu Một, Bình Dương",
-            price: "4.5 Triệu",
-            area: 35,
-            imageUrl: "https://example.com/room5.jpg",
-            updatedTime: "8 giờ trước",
-        },
-        {
-            id: 6,
-            name: "Phòng trọ số 6",
-            location: "Dĩ An, Bình Dương",
-            price: "6 Triệu",
-            area: 60,
-            imageUrl: "https://example.com/room6.jpg",
-            updatedTime: "Hôm qua",
-        },
-    ];
+    useEffect(() => {
+        const fetchRoomsByLocation = async () => {
+            try {
+                const response = await fetch(`http://localhost:3001/api/room/by-location/${diaDiemId}`);
+                const data = await response.json();
+                setRooms(data);
+                if (data.length > 0 && data[0].diaDiem) {
+                    setTinhThanh(data[0].diaDiem.tinhThanh);
+                } else {
+                    setTinhThanh("Không rõ khu vực");
+                }
+            } catch (error) {
+                console.error("Lỗi khi lấy phòng theo địa điểm:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (diaDiemId) {
+            fetchRoomsByLocation();
+        }
+    }, [diaDiemId]);
 
     return (
         <div className="categories">
             <div className="menu-categories">
                 <div className="breadcrumbs">
                     <div className="text-wrapper">Home</div>
-
                     <div className="text-wrapper">/</div>
-
                     <div className="div">Phòng trọ</div>
-
                     <div className="text-wrapper">/</div>
-
                     <div className="group">
                         <LocationButton
                             className="button-instance"
                             divClassName="design-component-instance-node"
+                            tinhThanh={tinhThanh}
                         />
                     </div>
                 </div>
 
                 <div className="infor">
                     <div className="cards">
-                        {mockRooms.map((room) => (
-                            <CardRow key={room.id} room={room} />
-                        ))}
+                        {loading ? (
+                            <p>Đang tải danh sách phòng...</p>
+                        ) : rooms.length === 0 ? (
+                            <p>Không tìm thấy phòng trọ nào trong khu vực này.</p>
+                        ) : (
+                            rooms.map((room) => (
+                                <CardRow
+                                    key={room._id}
+                                    room={{
+                                        id: room._id,
+                                        name: room.tieuDe,
+                                        location: `${room.diaChiCuThe}, ${room.diaDiem?.quanHuyen}, ${room.diaDiem?.tinhThanh}`,
+                                        price: `${(room.gia / 1000000).toFixed(1)} Triệu`,
+                                        area: room.dienTich,
+                                        imageUrl: room.hinhAnh?.[0],
+                                        updatedTime: "Vừa đăng",
+                                    }}
+                                />
+                            ))
+                        )}
                     </div>
 
                     <div className="categories-title">
@@ -115,4 +98,5 @@ const Categories = () => {
         </div>
     );
 };
+
 export default Categories;

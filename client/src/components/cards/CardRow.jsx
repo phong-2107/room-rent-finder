@@ -1,14 +1,15 @@
 import React from "react";
 import "../../styles/CardRow.scss";
+import { Link } from "react-router-dom";
 
 const CardRow = ({ room }) => {
     if (!room) {
         // Có thể thay bằng loading hoặc fallback UI khác
         return <div>Không có dữ liệu</div>;
     }
-
+    const shortName = room.name.length > 16 ? room.name.slice(0, 20) + "..." : room.name;
     return (
-        <div className="card-row">
+        <Link to={`/room/${room.id}`} className="card-row">
             {/* Thay thế div cứng bằng ảnh từ dữ liệu */}
             <img className="img-3" alt={room.name} src={room.imageUrl} />
 
@@ -16,9 +17,7 @@ const CardRow = ({ room }) => {
                 <div className="text">
                     <div className="title">
                         <div className="frame-15">
-                            <div className="text-wrapper-16">{room.name}</div>
-
-                            {/* Icon trái tim đặt ngoài cùng bên phải */}
+                            <div className="text-wrapper-16">{shortName}</div>
                             <img
                                 className="frame-16"
                                 alt="Heart"
@@ -63,7 +62,7 @@ const CardRow = ({ room }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 

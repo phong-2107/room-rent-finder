@@ -6,6 +6,7 @@ import "../../styles/common/Header.scss";
 
 const Header = () => {
     const [user, setUser] = useState(null);
+    const [showMenu, setShowMenu] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         const loggedInUser = getUser();
@@ -45,10 +46,10 @@ const Header = () => {
                     <div className="frame-2">
                         <div className="frame-3">
                             {/* Đổi div thành a để có link */}
-                            <a href="/phong-tro" className="text-wrapper-8">
+                            <a href="/rooms" className="text-wrapper-8">
                                 Phòng trọ
                             </a>
-                            <a href="/list" className="text-wrapper-8">
+                            <a href="/rooms/location/67ea6d7cf45f6276995baab6" className="text-wrapper-8">
                                 Danh Mục
                             </a>
                             <a href="/news" className="text-wrapper-8">
@@ -60,14 +61,27 @@ const Header = () => {
                         </div>
                     </div>
 
-                    {/* đăng nhập đăng kýký*/}
                     <div className="frame-2">
                         {user ? (
                             <div className="user-info">
-                                <span>Hi! <strong>{user.taiKhoan}</strong></span>
-                                <button onClick={handleLogout} className="logout" title="Đăng xuất">
-                                    <i className="fa-solid fa-right-from-bracket"></i>
-                                </button>
+                                <div className="user-dropdown">
+                                    <div className="user-toggle">
+                                        <span>Hi! <strong>{user.taiKhoan}</strong></span>
+                                        <i className="fa-solid fa-bars"></i>
+                                    </div>
+
+                                    <div className="dropdown-box">
+                                        <div className="dropdown-item">
+                                            <a href="/profile">Hồ sơ</a>
+                                        </div>
+                                        <div className="dropdown-item">
+                                            <a href="/setting">Cài đặt</a>
+                                        </div>
+                                        <div className="dropdown-item" style={{ color: 'red' }} onClick={handleLogout}>
+                                            <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         ) : (
                             <>
@@ -78,6 +92,8 @@ const Header = () => {
                             </>
                         )}
                     </div>
+
+
                 </div>
             </div>
         </div>

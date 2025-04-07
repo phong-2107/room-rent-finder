@@ -1,18 +1,22 @@
 import React from "react";
 
-// Sidebar Component
-const Sidebar = () => {
+const Sidebar = ({ user }) => {
   return (
     <div className="sidebar">
-      {/* User Info Section */}
       <div className="sidebar__user-info">
-        <div className="sidebar__avatar"></div>
+        <div className="sidebar__avatar">
+          {/* Ảnh đại diện nếu có */}
+          {user?.anhDaiDien ? (
+            <img src={user.anhDaiDien} alt="avatar" />
+          ) : null}
+        </div>
         <div className="sidebar__username">
-          <div className="sidebar__username-text">Khanh Hồ</div>
+          <div className="sidebar__username-text">
+            {user?.hoTen || "Người dùng"}
+          </div>
         </div>
       </div>
-      
-      {/* Personal Info Button - Active */}
+
       <button className="sidebar__menu-item sidebar__menu-item--active">
         <img
           className="sidebar__menu-icon"
@@ -23,8 +27,7 @@ const Sidebar = () => {
           <div className="sidebar__menu-label">Thông tin cá nhân</div>
         </div>
       </button>
-      
-      {/* Logout Button */}
+
       <button className="sidebar__menu-item sidebar__menu-item--logout">
         <div className="sidebar__menu-icon-wrapper">
           <img

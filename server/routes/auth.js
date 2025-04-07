@@ -74,10 +74,13 @@ router.post(
                 hoTen,
                 email,
                 soDienThoai,
-                matKhau: password, // Sẽ được hash trong hook pre("save")
+                matKhau: password,
                 anhDaiDien: profileImage,
                 role: role._id,
+                taiKhoan: hoTen,
+                loaiUser: roleName,
             });
+
 
             // 4. Lưu user vào DB
             await newUser.save();
@@ -132,12 +135,15 @@ router.post(
             await user.save();
 
             // 5. Tạo token
+
+            console.log("🧪 JWT_SECRET in login:", process.env.JWT_SECRET);
             const token = jwt.sign(
                 {
                     id: user._id,
                     role: user.role?.tenRole || "User",
                 },
                 process.env.JWT_SECRET,
+
                 { expiresIn: "7d" }
             );
 
