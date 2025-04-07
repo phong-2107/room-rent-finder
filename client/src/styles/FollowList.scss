@@ -15,8 +15,6 @@
       width: 1440px;
   
       .banner {
-        border: 1px solid;
-        border-color: rgb(228, 228, 228);
         height: 389px;
         left: 0;
         position: absolute;
@@ -30,6 +28,9 @@
           position: absolute;
           top: 0;
           width: 1440px;
+          border: 1px solid;
+          border-color: rgb(228, 228, 228);
+
         }
       }
     }

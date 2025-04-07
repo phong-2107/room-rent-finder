@@ -16,7 +16,7 @@ const DetailRoom = () => {
         <div className="breadcrumbs-detailroom">
           <div className="text-wrapper">Home</div>
           <div className="text-wrapper">/</div>
-          <div className="div">Phòng trọ</div>
+          <div className="text-wrapper">Phòng trọ</div>
           <div className="text-wrapper">/</div>
           <div className="group">
             <LocationButton
@@ -24,6 +24,8 @@ const DetailRoom = () => {
               divClassName="design-component-instance-node"
             />
           </div>
+          <div className="text-wrapper">/</div>
+          <div className="div">Nhà trọ số 1</div>
         </div>
         
         <div className="infor-room">
@@ -44,11 +46,11 @@ const DetailRoom = () => {
 
           <div className="room-title">
             <TypeHouse 
-              text="Phòng Cho Thuê Ở Khu Vực:"
-              text1="Tp. Hồ Chí Minh"
-              text2="Hà Nội" 
-              text3="Bình Dương"
-              text4="Bà Rịa - Vũng Tàu"
+              text="Loại Phòng Cần Thuê"
+              text1="Phòng trọ"
+              text2="Chung cư" 
+              text3="Nhà nguyên căn"
+              text4="Kí túc xá"
             />
                         
             <TypeHouseWrapper />

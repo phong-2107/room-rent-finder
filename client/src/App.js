@@ -16,12 +16,17 @@ import DetailRoom from './pages/DetailRoom'; // Trang chi tiết phòng
 // Import layout
 import MainLayout from './layouts/MainLayout';
 import AuthLayout from './layouts/AuthLayout';
+import LayoutAdmin from './layouts/admin/LayoutAdmin'; // Nếu bạn có layout admin riêng
+
 
 import "./App.css";
 import ForgotPassword from './pages/user/ForgotPassword';
 import { UserProfile } from './pages/UserProfile';
 import { ChangePassword } from './pages/ChangePasswordPage';
 import { FollowList } from './pages/FollowList';
+import AdminPage from './pages/admin/AdminPage';
+import ManagerRoom from './pages/admin/ManagerRoom';
+import CreateRoom from './pages/admin/CreateRoom';
 
 
 function App() {
@@ -38,6 +43,14 @@ function App() {
             <Route path="/changepassword" element={<ChangePassword />} />
             <Route path="/followlist" element={<FollowList />} />
             <Route path="/room/:id" element={<DetailRoom />} /> {/* Thay đổi thành trang chi tiết phòng */}      
+
+          </Route>
+
+
+          <Route element={<LayoutAdmin />}>
+            <Route path="/admin/dashboard" element={<AdminPage />} />
+            <Route path="/admin/room" element={<ManagerRoom />} />
+            <Route path="/admin/create-room" element={<CreateRoom />} />
 
           </Route>
 

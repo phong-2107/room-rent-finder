@@ -33,15 +33,15 @@ const Footer = () => {
 
         <div className="frame-6">
           <div className="group-6">
-            <div className="text-wrapper-11">Phòng Trọ</div>
+            <a href="/list" className="text-wrapper-11">Phòng Trọ</a>
           </div>
 
           <div className="group-6">
-            <div className="text-wrapper-11">Nhà ở</div>
+            <a href="/list" className="text-wrapper-11">Nhà ở</a>
           </div>
 
           <div className="group-6">
-            <div className="text-wrapper-11">Chung Cư</div>
+            <a href="/list" className="text-wrapper-11">Chung Cư</a>
           </div>
         </div>
 
@@ -77,22 +77,22 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="frame-9">
+        <a className="frame-9">
           <img
             className="icon-linkedin"
             alt="Icon linkedin"
             src="https://c.animaapp.com/m8twrcooYWMm14/img/icon-linkedin.svg"
           />
 
-          <div className="icon-facebook" />
+          <a className="icon-facebook" />
 
-          <div className="icon-instagram" />
-        </div>
+          <a className="icon-instagram" />
+        </a>
 
       </div>
 
-      <div className="frame-9">
-        {/* <div className="frame-11">
+      <div className="frame-9-footer">
+        <div className="frame-11">
           <div className="frame-12">
             <div className="text-wrapper-13">Copyright © 2025 trotot.vn</div>
           </div>
@@ -102,9 +102,9 @@ const Footer = () => {
               Website đang trong gian đoạn thử nghiệm
             </p>
           </div>
-        </div> */}
+        </div>
 
-        <div className="frame-14">
+        <div className="frame-14-footer">
           <div className="text-wrapper-14">Privacy policy</div>
 
           <div className="text-wrapper-14">Privacy policy</div>
