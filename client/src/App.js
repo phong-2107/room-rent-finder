@@ -10,6 +10,7 @@ import NewsPage from './pages/NewsPage';
 import SignIn from './pages/user/SignIn';
 import SignUp from './pages/user/SignUp';
 import ContactPage from './pages/ContactPage';
+import DetailRoom from './pages/DetailRoom'; // Trang chi tiết phòng
 // ... import thêm các trang khác
 
 // Import layout
@@ -18,6 +19,9 @@ import AuthLayout from './layouts/AuthLayout';
 
 import "./App.css";
 import ForgotPassword from './pages/user/ForgotPassword';
+import { UserProfile } from './pages/UserProfile';
+import { ChangePassword } from './pages/ChangePasswordPage';
+import { FollowList } from './pages/FollowList';
 
 
 function App() {
@@ -30,6 +34,10 @@ function App() {
             <Route path="/list" element={<ListPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/changepassword" element={<ChangePassword />} />
+            <Route path="/followlist" element={<FollowList />} />
+            <Route path="/room/:id" element={<DetailRoom />} /> {/* Thay đổi thành trang chi tiết phòng */}      
 
           </Route>
 

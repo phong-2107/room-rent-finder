@@ -1,0 +1,120 @@
+.save-post {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  
+    .div-2 {
+      background-color: #ffffff;
+      border: 1px solid;
+      border-color: rgb(228, 228, 228);
+      height: 2213px;
+      overflow: hidden;
+      position: relative;
+      width: 1440px;
+  
+      .banner {
+        border: 1px solid;
+        border-color: rgb(228, 228, 228);
+        height: 389px;
+        left: 0;
+        position: absolute;
+        top: 107px;
+        width: 1440px;
+  
+        .rectangle {
+          height: 389px;
+          left: 0;
+          object-fit: cover;
+          position: absolute;
+          top: 0;
+          width: 1440px;
+        }
+      }
+    }
+  }
+
+  .content-by-anima {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    left: 0;
+    padding: 34px 343px;
+    position: absolute;
+    top: 496px;
+    width: 1440px;
+  
+    .div-wrapper-2 {
+      align-items: center;
+      display: inline-flex;
+      flex: 0 0 auto;
+      gap: 10px;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      } 
+    }
+
+    .div-wrapper-3 {
+      align-items: center;
+      display: inline-flex;
+      flex: 0 0 auto;
+      gap: 10px;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+  
+    .p {
+      color: #000000;
+      font-family: "Inter", Helvetica;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 30px;
+      margin-top: -1.00px;
+      position: relative;
+      width: fit-content;
+    }
+  
+    .card-content {
+      align-items: center;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      height: 1246px;
+      padding: 18px 0px;
+      position: relative;
+      width: 100%;
+  
+      .card-row-instance {
+        align-self: stretch !important;
+        width: 100% !important;
+      }
+    }
+  
+    .design-component-instance-node {
+      left: 470px !important;
+    }
+  
+    .text-wrapper-8 {
+      color: #618aef;
+      font-family: "Inter", Helvetica;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 30px;
+      margin-top: -1.00px;
+      position: relative;
+      white-space: nowrap;
+      width: fit-content;
+    }
+  }
+  
