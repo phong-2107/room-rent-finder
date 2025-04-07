@@ -1,27 +1,22 @@
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/User");
+const { Permission } = require("../models/Permission");
 
-/**
- * Middleware xác thực người dùng
- */
 const xacThucNguoiDung = async (req, res, next) => {
     try {
         const authHeader = req.header("Authorization");
+
         if (!authHeader) {
             return res.status(401).json({ message: "Không có token, từ chối truy cập!" });
         }
 
-        // Kiểm tra và loại bỏ "Bearer " nếu có
         const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : authHeader;
 
-        // Xác minh token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log("✅ Decoded token:", decoded);
 
-        // Tìm user và populate role cùng permissions
-        const user = await User.findById(decoded.id).populate({
-            path: "role",
-            populate: { path: "permissions" },
-        });
+        const user = await User.findById(decoded.id).populate("role"); // ✅ OK rồi
+        console.log("✅ User found:", user);
 
         if (!user) {
             return res.status(404).json({ message: "Người dùng không tồn tại!" });
@@ -30,12 +25,18 @@ const xacThucNguoiDung = async (req, res, next) => {
         req.user = user;
         next();
     } catch (error) {
+        console.error("❌ Middleware Error:", error.message);
+
         if (error.name === "TokenExpiredError") {
             return res.status(401).json({ message: "Token đã hết hạn!" });
         }
-        return res.status(401).json({ message: "Token không hợp lệ!" });
+
+        return res.status(401).json({ message: "Token không hợp lệ!", error: error.message });
     }
 };
+
+module.exports = { xacThucNguoiDung };
+
 
 /**
  * Middleware kiểm tra quyền

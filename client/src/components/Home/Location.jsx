@@ -61,7 +61,7 @@ const Location = () => {
                                 src="https://c.animaapp.com/m8uerufgJVBeV6/img/image-5.png"
                             />
 
-                            <p className="text-wrapper-10">Bà Rịa - Vũng Tàu</p>
+                            <p className="text-wrapper-9">Bà Rịa - Vũng Tàu</p>
                         </div>
                     </div>
                 </div>

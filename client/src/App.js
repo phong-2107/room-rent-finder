@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/state'; // nếu bạn lưu redux store ở đây
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // Import các trang
 import HomePage from './pages/HomePage';
@@ -22,6 +23,7 @@ import ForgotPassword from './pages/user/ForgotPassword';
 import { UserProfile } from './pages/UserProfile';
 import { ChangePassword } from './pages/ChangePasswordPage';
 import { FollowList } from './pages/FollowList';
+import RoomsPages from './pages/RoomsPages';
 
 
 function App() {
@@ -31,13 +33,14 @@ function App() {
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/list" element={<ListPage />} />
+            <Route path="/rooms/location/:diaDiemId" element={<ListPage />} />
+            <Route path="/rooms/" element={<RoomsPages />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/changepassword" element={<ChangePassword />} />
             <Route path="/followlist" element={<FollowList />} />
-            <Route path="/room/:id" element={<DetailRoom />} /> {/* Thay đổi thành trang chi tiết phòng */}      
+            <Route path="/room/:id" element={<DetailRoom />} /> {/* Thay đổi thành trang chi tiết phòng */}
 
           </Route>
 

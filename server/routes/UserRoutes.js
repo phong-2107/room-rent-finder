@@ -1,15 +1,20 @@
 const express = require("express");
 const { xacThucNguoiDung } = require("../middleware/authMiddleware");
+const { User } = require("../models/User");
+
 const router = express.Router();
 
-// GET /api/user/me - Lấy thông tin người dùng hiện tại
-router.get("/me", xacThucNguoiDung, (req, res) => {
+router.get("/me", xacThucNguoiDung, async (req, res) => {
     try {
-        // Vì middleware đã tìm và populate user, nên dùng trực tiếp req.user
-        const userResponse = req.user.toObject();
-        // Ẩn trường mật khẩu trước khi gửi về client
-        delete userResponse.matKhau;
-        res.json({ user: userResponse });
+        const user = await User.findById(req.user._id)
+            .select("-matKhau")
+            .populate("role");
+
+        if (!user) {
+            return res.status(404).json({ message: "Không tìm thấy người dùng." });
+        }
+
+        res.json({ user });
     } catch (error) {
         res.status(500).json({ message: "Lỗi server!", error: error.message });
     }

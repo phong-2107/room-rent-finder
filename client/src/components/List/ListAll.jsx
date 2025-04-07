@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/home/Categories.scss";
-import Place from "./Place";
-import Card from "./Card";
 import { fetchRooms, fetchDiaDiem } from "../../features/roomApi";
+import Place from "../Home/Place";
+import Card from "../Home/Card";
 
-const Categories = () => {
+const ListAll = () => {
     const [roomsData, setRoomsData] = useState([]);
     const [locations, setLocations] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    // Phân trang
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
 
     useEffect(() => {
         const loadData = async () => {
@@ -28,6 +32,11 @@ const Categories = () => {
         loadData();
     }, []);
 
+    // Tính dữ liệu trang hiện tại
+    const totalPages = Math.ceil(roomsData.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const currentRooms = roomsData.slice(startIndex, startIndex + itemsPerPage);
+
     return (
         <div className="categories-Home">
             <div className="title-3">
@@ -39,19 +48,15 @@ const Categories = () => {
                     <div className="text-wrapper-12">Cho Thuê Phòng Trọ</div>
 
                     <div className="places">
-                        {console.log("Location: ", locations)}
-
-                        <div className="places">
-                            {locations.map((location) => (
-                                <Place
-                                    key={location._id}
-                                    className="place-instance"
-                                    divClassName="design-component-instance-node"
-                                    text={location.tinhThanh}
-                                    id={location._id}
-                                />
-                            ))}
-                        </div>
+                        {locations.map((location) => (
+                            <Place
+                                key={location._id}
+                                className="place-instance"
+                                divClassName="design-component-instance-node"
+                                text={location.tinhThanh}
+                                id={location._id}
+                            />
+                        ))}
                     </div>
                 </div>
 
@@ -59,7 +64,7 @@ const Categories = () => {
                     {loading ? (
                         <p>Đang tải phòng trọ...</p>
                     ) : (
-                        roomsData.map((room) => (
+                        currentRooms.map((room) => (
                             <Card
                                 key={room._id}
                                 id={room._id}
@@ -78,9 +83,31 @@ const Categories = () => {
                         ))
                     )}
                 </div>
+                {!loading && totalPages > 1 && (
+                    <div className="pagination" style={{ marginTop: "30px", textAlign: "center" }}>
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                key={index + 1}
+                                onClick={() => setCurrentPage(index + 1)}
+                                className={`pagination-button ${currentPage === index + 1 ? "active" : ""}`}
+                                style={{
+                                    margin: "0 5px",
+                                    padding: "6px 12px",
+                                    borderRadius: "6px",
+                                    backgroundColor: currentPage === index + 1 ? "#007bff" : "#f0f0f0",
+                                    color: currentPage === index + 1 ? "#fff" : "#333",
+                                    border: "none",
+                                    cursor: "pointer",
+                                }}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
 };
 
-export default Categories;
+export default ListAll;

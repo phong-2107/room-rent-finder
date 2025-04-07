@@ -135,12 +135,15 @@ router.post(
             await user.save();
 
             // 5. Tạo token
+
+            console.log("🧪 JWT_SECRET in login:", process.env.JWT_SECRET);
             const token = jwt.sign(
                 {
                     id: user._id,
                     role: user.role?.tenRole || "User",
                 },
                 process.env.JWT_SECRET,
+
                 { expiresIn: "7d" }
             );
 

@@ -9,7 +9,6 @@ const userRoutes = require("./routes/UserRoutes");
 const phongTroRoutes = require("./routes/phongTro");
 const diaDiemRoutes = require("./routes/DiaDiem");
 // (Giữ lại nếu bạn vẫn muốn sử dụng route phongTro)
-
 const app = express();
 
 // ------------------- Middlewares -------------------

@@ -56,6 +56,28 @@ router.post("/", async (req, res) => {
 });
 
 /**
+ * 📌 Lấy thông tin chi tiết phòng trọ theo ID
+ */
+router.get("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const phong = await PhongTro.findById(id)
+            .populate("nguoiDang", "hoTen email")
+            .populate("diaDiem");
+
+        if (!phong) {
+            return res.status(404).json({ message: "Không tìm thấy phòng trọ!" });
+        }
+
+        res.json(phong);
+    } catch (error) {
+        res.status(500).json({ message: "Lỗi khi lấy chi tiết phòng trọ", error: error.message });
+    }
+});
+
+
+
+/**
  * Sửa phòng trọ (Chỉ Nhân viên và Admin có quyền)
  */
 router.put("/:id", xacThucNguoiDung, kiemTraQuyen("QUAN_LY_PHONG_TRO"), async (req, res) => {

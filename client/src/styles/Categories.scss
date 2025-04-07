@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  // height: 100%;
   left: 0;
   padding: 50px 30px;
   position: relative;
@@ -14,7 +13,6 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    height: 1393px;
     margin-bottom: -50px;
     position: relative;
     width: 1120px;
@@ -24,7 +22,6 @@
       align-self: stretch;
       display: flex;
       gap: 9px;
-      height: 43px;
       position: relative;
       width: 100%;
   
@@ -60,7 +57,7 @@
   
       .button-instance {
           display: flex !important;
-          width: 127px !important;
+          // width: 127px !important;
       }
   
       .design-component-instance-node {
@@ -70,23 +67,25 @@
   }
 
     .infor {
-      height: 1335px;
       left: 0;
-      position: absolute;
-      top: 43px;
+      position: relative;
       width: 1120px;
+      margin: 20px 0;
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
 
       .cards {
         align-items: flex-start;
         display: flex;
         flex-direction: column;
         gap: 20px;
-        height: 1335px;
+        // height: 1335px;
         justify-content: center;
         left: 0;
-        position: absolute;
+        // position: absolute;
         top: 0;
-        width: 629px;
+        width: 100%;
       }
 
       .categories-title {
@@ -95,11 +94,11 @@
         flex-direction: column;
         gap: 20px;
         height: 1003px;
-        justify-content: center;
+        justify-content: space-around;
         left: 629px;
-        position: absolute;
+        // position: absolute;
         top: 0;
-        width: 485px;
+        width: 100%;
       }
 
       .total-area {
