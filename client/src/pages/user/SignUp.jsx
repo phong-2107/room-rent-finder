@@ -11,7 +11,9 @@ const SignUp = () => {
         email: "",
         password: "",
         confirmPassword: "",
+        soDienThoai: "",
     });
+
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -26,14 +28,21 @@ const SignUp = () => {
         }
 
         try {
-            const data = await register(form.username, form.email, form.password);
+            const data = await register(
+                form.username,
+                form.email,
+                form.password,
+                form.soDienThoai,
+                "Customer"
+            );
             saveToken(data.token, true);
             saveUser(data.user, true);
             navigate("/");
         } catch (err) {
-            setError(err.message || "Đăng ký thất bại");
+            setError(err.response?.data?.message || "Đăng ký thất bại");
         }
     };
+
 
     const signUpButtonStyle = {
         backgroundColor: "#4CAF50",

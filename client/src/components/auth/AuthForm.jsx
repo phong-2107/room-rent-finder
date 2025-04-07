@@ -40,6 +40,18 @@ const AuthForm = ({
                     />
                 </div>
             )}
+            {isSignUp && (
+                <div className="form-group">
+                    <label htmlFor="soDienThoai">Số điện thoại</label>
+                    <input
+                        id="soDienThoai"
+                        type="text"
+                        placeholder="Số điện thoại"
+                        value={form.soDienThoai}
+                        onChange={(e) => onChange("soDienThoai", e.target.value)}
+                    />
+                </div>
+            )}
 
             {(isSignIn || isSignUp) && (
                 <div className="form-group">
@@ -86,8 +98,8 @@ const AuthForm = ({
             <button
                 className={
                     isSignIn ? "login-btn"
-                    : isSignUp ? "register-btn"
-                    : "forgot-btn"
+                        : isSignUp ? "register-btn"
+                            : "forgot-btn"
                 }
                 onClick={onSubmit}
                 style={buttonStyle}

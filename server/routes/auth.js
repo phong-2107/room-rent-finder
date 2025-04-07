@@ -74,10 +74,13 @@ router.post(
                 hoTen,
                 email,
                 soDienThoai,
-                matKhau: password, // Sẽ được hash trong hook pre("save")
+                matKhau: password,
                 anhDaiDien: profileImage,
                 role: role._id,
+                taiKhoan: hoTen,
+                loaiUser: roleName,
             });
+
 
             // 4. Lưu user vào DB
             await newUser.save();
