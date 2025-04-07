@@ -90,6 +90,7 @@
       margin-right: -2px;
       position: relative;
       width: 100%;
+      cursor: pointer;
     }
 
     .frame-6 {
@@ -113,6 +114,10 @@
         position: absolute;
         top: 0;
         width: 103px;
+        
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
 
@@ -210,6 +215,7 @@
         height: 29px;
         position: relative;
         width: 28px;
+        cursor: pointer;
       }
 
       .icon-facebook {
@@ -218,6 +224,7 @@
         height: 28.82px;
         position: relative;
         width: 29px;
+        cursor: pointer;
       }
 
       .icon-instagram {
@@ -226,6 +233,8 @@
         height: 29px;
         position: relative;
         width: 29px;
+        cursor: pointer;
+
       }
     }
   }
@@ -303,5 +312,20 @@
         width: fit-content;
       }
     }
+  }
+
+  .frame-9-footer {
+      display: flex;
+      color: #fff;
+      justify-content: space-between;
+      align-items: center; 
+      width: 100%;
+      max-width: 1120px;
+
+      .frame-14-footer {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
   }
 }
