@@ -10,22 +10,6 @@ const ListPage = () => {
                 <Find />
                 <Categories />
 
-                {/* <div className="frame-19">
-                    <div className="frame-20">
-                        <p className="text-wrapper-31">VỊ TRÍ DỰ ÁN NỔI BẬT</p>
-                    </div>
-
-                    <div className="group-10">
-                        <div className="image-wrapper">
-                            <img
-                                className="image"
-                                alt="Image"
-                                src="https://c.animaapp.com/m8twrcooYWMm14/img/image.png"
-                            />
-                        </div>
-                    </div>
-                </div> */}
-
             </div>
         </div>
     );
