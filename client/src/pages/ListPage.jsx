@@ -11,9 +11,7 @@ const ListPage = () => {
             <div className="div-2">
                 <Find />
                 <Categories />
-
                 <Map />
-
             </div>
         </div>
     );
