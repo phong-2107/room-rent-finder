@@ -75,13 +75,13 @@ const DetailRoom = () => {
           </div>
 
           <div className="room-title">
-            <TypeHouse 
+            <TypeHouse
               text="Loại Phòng Cần Thuê"
               text1="Phòng trọ"
-              text2="Chung cư" 
+              text2="Chung cư"
               text3="Nhà nguyên căn"
               text4="Kí túc xá"
-
+            />
             <TypeHouseWrapper />
 
             <TypeHouse
