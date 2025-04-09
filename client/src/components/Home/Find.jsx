@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/home/FindFilter.scss";
-import Icons from "../icons/Icon";
+// import Icons from "../icons/Icon";
 
 const Find = () => {
     const [searchText, setSearchText] = useState("");
@@ -28,7 +28,7 @@ const Find = () => {
                                 <option value="chungcu">Chung cư mini</option>
                                 <option value="nguyencan">Nhà nguyên căn</option>
                             </select>
-                            <Icons className="selectarrow" />
+                            {/* <Icons className="selectarrow" /> */}
                         </div>
                     </div>
 
@@ -45,7 +45,7 @@ const Find = () => {
                                 <option value="hn">Hà Nội</option>
                                 <option value="dn">Đà Nẵng</option>
                             </select>
-                            <Icons className="selectarrow" />
+                            {/* <Icons className="selectarrow" /> */}
                         </div>
                     </div>
 
@@ -63,12 +63,12 @@ const Find = () => {
                                 <option value="3-5tr">3 - 5 triệu</option>
                                 <option value="tren5tr">Trên 5 triệu</option>
                             </select>
-                            <Icons className="selectarrow" />
+                            {/* <Icons className="selectarrow" /> */}
                         </div>
                     </div>
                 </div>
                 <img
-                    className="img"
+                    className="img img-filter"
                     alt="Filter"
                     src="https://c.animaapp.com/m8twrcooYWMm14/img/filter-1.svg"
                 />

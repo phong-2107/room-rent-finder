@@ -37,7 +37,18 @@
           align-self: stretch;
         }
       }
+      .icon-menu{
+        padding: 6px;
+        background-color: var(--x-006-bold);
+        color:#fff;
+        border-radius: 3px;
 
+        &:hover {
+          background-color: var(--x-006-1df);
+          cursor: pointer;
+        }
+      }
+      
       .frame-2 {
         display: flex;
         align-items: center;

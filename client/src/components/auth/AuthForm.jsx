@@ -17,13 +17,13 @@ const AuthForm = ({
 
             {(isSignIn || isSignUp) && (
                 <div className="form-group">
-                    <label htmlFor="username">Tên đăng nhập</label>
+                    <label htmlFor="taiKhoan">Tài khoản</label>
                     <input
-                        id="username"
+                        id="taiKhoan"
                         type="text"
-                        placeholder="Tên đăng nhập"
-                        value={form.username}
-                        onChange={(e) => onChange("username", e.target.value)}
+                        placeholder="Nhập tài khoản"
+                        value={form.taiKhoan}
+                        onChange={(e) => onChange("taiKhoan", e.target.value)}
                     />
                 </div>
             )}
@@ -40,6 +40,7 @@ const AuthForm = ({
                     />
                 </div>
             )}
+
             {isSignUp && (
                 <div className="form-group">
                     <label htmlFor="soDienThoai">Số điện thoại</label>

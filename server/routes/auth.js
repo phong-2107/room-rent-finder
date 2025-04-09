@@ -94,11 +94,12 @@ router.post(
 );
 
 // ------------------ API Đăng nhập ------------------
+
 router.post(
     "/login",
     [
-        body("email").isEmail().withMessage("Email không hợp lệ"),
-        body("password").notEmpty().withMessage("Password không được để trống"),
+        body("taiKhoan").notEmpty().withMessage("Tài khoản không được để trống"),
+        body("password").notEmpty().withMessage("Mật khẩu không được để trống"),
     ],
     async (req, res) => {
         try {
@@ -106,58 +107,62 @@ router.post(
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() });
             }
-            const { email, password } = req.body;
 
-            // 1. Tìm user
-            const user = await User.findOne({ email }).populate("role");
+            const { taiKhoan, password } = req.body;
+
+            // Tìm người dùng theo tài khoản
+            const user = await User.findOne({ taiKhoan }).populate("role");
             if (!user) {
-                return res.status(404).json({ message: "Email hoặc mật khẩu không đúng!" });
+                return res.status(404).json({ message: "Tài khoản hoặc mật khẩu không đúng!" });
             }
 
-            // 3. Kiểm tra mật khẩu
+            // Kiểm tra nếu đang bị khóa
+            if (user.lockUntil && user.lockUntil > Date.now()) {
+                const remaining = Math.ceil((user.lockUntil - Date.now()) / 1000 / 60);
+                return res.status(403).json({
+                    message: `Tài khoản bị khóa. Vui lòng thử lại sau ${remaining} phút.`,
+                });
+            }
+
+            // Kiểm tra mật khẩu
             const isMatch = await user.kiemTraMatKhau(password);
             if (!isMatch) {
-                // Mật khẩu sai
-                user.loginAttempts += 1;
-
-                // Sau 5 lần sai liên tiếp, lock 30 phút (chẳng hạn)
+                user.loginAttempts = (user.loginAttempts || 0) + 1;
                 if (user.loginAttempts >= 5) {
-                    user.lockUntil = Date.now() + 30 * 60 * 1000; // 30 phút
+                    user.lockUntil = Date.now() + 30 * 60 * 1000; // khóa 30 phút
                 }
-
                 await user.save();
-                return res.status(400).json({ message: "Email hoặc mật khẩu không đúng!" });
+                return res.status(400).json({ message: "Tài khoản hoặc mật khẩu không đúng!" });
             }
 
-            // 4. Đúng password => reset loginAttempts, lockUntil
+            // Đăng nhập thành công
             user.loginAttempts = 0;
             user.lockUntil = null;
             await user.save();
 
-            // 5. Tạo token
-
-            console.log("🧪 JWT_SECRET in login:", process.env.JWT_SECRET);
             const token = jwt.sign(
                 {
                     id: user._id,
                     role: user.role?.tenRole || "User",
                 },
                 process.env.JWT_SECRET,
-
                 { expiresIn: "7d" }
             );
 
-            // 6. Không gửi mật khẩu về client
             const userResponse = { ...user.toObject() };
             delete userResponse.matKhau;
+            delete userResponse.loginAttempts;
+            delete userResponse.lockUntil;
 
             res.status(200).json({ token, user: userResponse });
         } catch (error) {
-            console.error("Lỗi khi đăng nhập:", error.message);
-            res.status(500).json({ message: "Lỗi đăng nhập!", error: error.message });
+            console.error("Lỗi đăng nhập:", error.message);
+            res.status(500).json({ message: "Lỗi máy chủ!", error: error.message });
         }
     }
 );
+
+
 
 router.post("/logout", (req, res) => {
     res.status(200).json({ message: "Đăng xuất thành công" });

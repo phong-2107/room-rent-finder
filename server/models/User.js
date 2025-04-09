@@ -25,11 +25,10 @@ UserSchema.pre("save", async function (next) {
 });
 
 // Kiểm tra mật khẩu 
-UserSchema.methods.kiemTraMatKhau = async function (nhapMatKhau) {
-    matKhauhash = await bcrypt.hash(nhapMatKhau, 10);
-    // console.log("matKhauhash: ", matKhauhash);
-    return await bcrypt.compare(nhapMatKhau, this.matKhau);
+UserSchema.methods.kiemTraMatKhau = function (nhapMatKhau) {
+    return bcrypt.compare(nhapMatKhau, this.matKhau);
 };
+
 
 const User = mongoose.model("User", UserSchema);
 module.exports = { User };

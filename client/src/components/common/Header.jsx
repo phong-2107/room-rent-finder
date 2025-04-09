@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUser, removeUser, removeToken } from "../../utils/storage";
+import { IoMenu } from "react-icons/io5";
+import { TbLogout } from "react-icons/tb";
+
 
 import "../../styles/common/Header.scss";
 
@@ -66,8 +69,11 @@ const Header = () => {
                             <div className="user-info">
                                 <div className="user-dropdown">
                                     <div className="user-toggle">
-                                        <span>Hi! <strong>{user.taiKhoan}</strong></span>
-                                        <i className="fa-solid fa-bars"></i>
+                                        <span><strong>{user.taiKhoan}</strong></span>
+                                        <div className="icon-menu">
+                                            <IoMenu className="icon" />
+                                        </div>
+
                                     </div>
 
                                     <div className="dropdown-box">
@@ -78,7 +84,7 @@ const Header = () => {
                                             <a href="/setting">Cài đặt</a>
                                         </div>
                                         <div className="dropdown-item" style={{ color: 'red' }} onClick={handleLogout}>
-                                            <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+                                            <TbLogout />Đăng xuất
                                         </div>
                                     </div>
                                 </div>

@@ -6,7 +6,7 @@ import { login } from "../../features/auth/authApi";
 import { saveToken, saveUser } from "../../utils/storage";
 
 const SignIn = () => {
-    const [form, setForm] = useState({ username: "", password: "", remember: false });
+    const [form, setForm] = useState({ taiKhoan: "", password: "", remember: false });
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const SignIn = () => {
 
     const handleLogin = async () => {
         try {
-            const data = await login(form.username, form.password);
+            const data = await login(form.taiKhoan, form.password);
             saveToken(data.token, form.remember);
             saveUser(data.user, form.remember);
             navigate("/");
