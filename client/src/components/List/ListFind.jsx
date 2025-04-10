@@ -74,7 +74,7 @@ const ListFind = ({ filterParams }) => {
     const totalPages = Math.ceil(rooms.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentRooms = rooms.slice(startIndex, startIndex + itemsPerPage);
-
+    const diaDiemTuRoom = rooms[0]?.diaDiem;
     return (
         <div className="categories-Home">
             <div className="title-3">
@@ -86,15 +86,16 @@ const ListFind = ({ filterParams }) => {
                     <div className="text-wrapper-12">Cho Thuê Phòng Trọ</div>
 
                     <div className="places">
-                        {locations.map((location) => (
-                            <Place
-                                key={location._id}
-                                className="place-instance"
-                                divClassName="design-component-instance-node"
-                                text={location.tinhThanh}
-                                id={location._id}
-                            />
-                        ))}
+                    {diaDiemTuRoom && (
+                        <Place
+                            key={diaDiemTuRoom._id}
+                            className="place-instance"
+                            divClassName="design-component-instance-node"
+                            text={diaDiemTuRoom.tinhThanh}
+                            text2={diaDiemTuRoom.quanHuyen}
+                            id={diaDiemTuRoom._id}
+                        />
+                        )}
                     </div>
                 </div>
 
