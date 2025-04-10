@@ -69,7 +69,6 @@ const ListFind = ({ filterParams }) => {
         loadRooms();
     }, [filterParams]);
 
-
     // Tính toán dữ liệu cho phân trang
     const totalPages = Math.ceil(rooms.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
