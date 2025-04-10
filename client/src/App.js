@@ -29,6 +29,7 @@ import AdminPage from './pages/admin/AdminPage';
 import ManagerRoom from './pages/admin/ManagerRoom';
 import CreateRoom from './pages/admin/CreateRoom';
 import RoomsPages from './pages/RoomsPages';
+import FindRoom from './pages/FindRooms';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/rooms/location/:diaDiemId" element={<ListPage />} />
             <Route path="/rooms/" element={<RoomsPages />} />
+            <Route path="/findroom" element={<FindRoom />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/profile" element={<UserProfile />} />
