@@ -4,9 +4,10 @@ const AuthForm = ({
     type, // 'signIn' | 'signUp' | 'forgotPassword'
     form,
     onChange,
+    onFileChange, // New prop for handling profile image uploads
     onSubmit,
     error,
-    buttonStyle
+    buttonStyle,
 }) => {
     const isSignUp = type === "signUp";
     const isSignIn = type === "signIn";
@@ -14,8 +15,21 @@ const AuthForm = ({
 
     return (
         <div className="form">
+            {isSignUp && (
+                <div className="form-group">
+                    <label htmlFor="hoTen">Họ và Tên</label>
+                    <input
+                        id="hoTen"
+                        type="text"
+                        placeholder="Nhập họ và tên"
+                        value={form.hoTen}
+                        onChange={(e) => onChange("hoTen", e.target.value)}
+                        required
+                    />
+                </div>
+            )}
 
-            {(isSignIn || isSignUp) && (
+            {(isSignIn ) && (
                 <div className="form-group">
                     <label htmlFor="taiKhoan">Tài khoản</label>
                     <input
@@ -24,6 +38,7 @@ const AuthForm = ({
                         placeholder="Nhập tài khoản"
                         value={form.taiKhoan}
                         onChange={(e) => onChange("taiKhoan", e.target.value)}
+                        required
                     />
                 </div>
             )}
@@ -34,9 +49,10 @@ const AuthForm = ({
                     <input
                         id="email"
                         type="email"
-                        placeholder={isForgotPassword ? "Nhập email để khôi phục mật khẩu" : "Email"}
+                        placeholder={isForgotPassword ? "Nhập email để khôi phục mật khẩu" : "Nhập email"}
                         value={form.email}
                         onChange={(e) => onChange("email", e.target.value)}
+                        required
                     />
                 </div>
             )}
@@ -50,6 +66,7 @@ const AuthForm = ({
                         placeholder="Số điện thoại"
                         value={form.soDienThoai}
                         onChange={(e) => onChange("soDienThoai", e.target.value)}
+                        required
                     />
                 </div>
             )}
@@ -63,6 +80,7 @@ const AuthForm = ({
                         placeholder="Mật khẩu"
                         value={form.password}
                         onChange={(e) => onChange("password", e.target.value)}
+                        required
                     />
                 </div>
             )}
@@ -76,9 +94,22 @@ const AuthForm = ({
                         placeholder="Xác nhận mật khẩu"
                         value={form.confirmPassword}
                         onChange={(e) => onChange("confirmPassword", e.target.value)}
+                        required
                     />
                 </div>
             )}
+
+            {/* {isSignUp && (
+                <div className="form-group">
+                    <label htmlFor="profileImage">Ảnh đại diện</label>
+                    <input
+                        id="profileImage"
+                        type="file"
+                        accept="image/*"
+                        onChange={onFileChange} // Handle file input
+                    />
+                </div>
+            )} */}
 
             {error && <p className="error">{error}</p>}
 

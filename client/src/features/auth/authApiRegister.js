@@ -1,8 +1,17 @@
-export const register = async (username, email, password) => {
+export const register = async (hoTen, email, password, soDienThoai, roleName, profileImage) => {
+    const formData = new FormData();
+    formData.append("hoTen", hoTen);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("soDienThoai", soDienThoai);
+    formData.append("roleName", roleName);
+    if (profileImage) {
+        formData.append("profileImage", profileImage);
+    }
+
     const res = await fetch("http://localhost:3001/api/auth/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password }),
+        body: formData,
     });
 
     if (!res.ok) {
