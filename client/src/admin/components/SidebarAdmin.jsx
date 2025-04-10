@@ -28,7 +28,7 @@ const SidebarAdmin = () => {
           <img src="https://c.animaapp.com/m8twrcooYWMm14/img/logo.png" alt="TimTro24H" className="logo" />
         </Link>
       </div>
-      
+
       <nav className="sidebar-menu">
         <ul>
           <li className={isActive('/admin/dashboard') ? 'active' : ''}>
@@ -56,7 +56,7 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li className={isActive('/admin/quyen') ? 'active' : ''}>
-            <Link to="/admin/quyen">
+            <Link to="/admin/permission">
               <img src='https://c.animaapp.com/W9WTQKAn/img/key-1.svg' className="menu-icon" alt="" />
               <span>Quyền</span>
             </Link>

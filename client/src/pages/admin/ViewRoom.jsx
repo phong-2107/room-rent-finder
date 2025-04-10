@@ -61,7 +61,8 @@ const ViewRoom = () => {
         <div className="create-room-page">
             <div className="form-container">
                 <div className="page-title">
-                    <h2>Chi tiết phòng trọ</h2>
+                    <a href='http://localhost:3000/admin/room'>Room /</a>
+                    <h3>Chi tiết phòng trọ</h3>
                 </div>
 
                 <form className="room-form">

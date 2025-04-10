@@ -32,6 +32,8 @@ import CreateRoom from './pages/admin/CreateRoom';
 import RoomsPages from './pages/RoomsPages';
 import FindRoom from './pages/FindRooms';
 import ViewRoom from './pages/admin/ViewRoom';
+import PermissionManagement from './admin/components/PermissionManagement';
+import CreatePermission from './pages/admin/CreatePermission';
 
 function App() {
   return (
@@ -69,6 +71,8 @@ function App() {
             <Route path="/admin/room" element={<ManagerRoom />} />
             <Route path="/admin/create-room" element={<CreateRoom />} />
             <Route path="/admin/room/:id" element={<ViewRoom />} />
+            <Route path="/admin/permission" element={<PermissionManagement />} />
+            <Route path="/admin/permission/create" element={<CreatePermission />} />
           </Route>
 
           <Route element={<AuthLayout />}>
