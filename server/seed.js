@@ -51,7 +51,7 @@ const seedData = async () => {
             email: "NV@gmail.com",
             taiKhoan: "nhanvien1",
             matKhau: hashedPassword,
-            loaiUser: "NhanVien",
+            loaiUser: "Nhân viên",
             role: nhanVienRole._id,
             gioiTinh: "Nữ",
             soDienThoai: "0900000002"
@@ -62,7 +62,7 @@ const seedData = async () => {
             email: "KH@gmail.com",
             taiKhoan: "khachhang1",
             matKhau: hashedPassword,
-            loaiUser: "KhachHang",
+            loaiUser: "Khách hàng",
             role: khachHangRole._id,
             gioiTinh: "Nam",
             soDienThoai: "0900000003"

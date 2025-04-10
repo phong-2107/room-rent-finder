@@ -41,4 +41,5 @@ app.use("/api/room", phongTroRoutes);
 app.use("/api/diadiem", diaDiemRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/khachhang", khachHangRoutes);
+
 module.exports = app; 

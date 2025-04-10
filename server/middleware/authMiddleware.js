@@ -4,36 +4,44 @@ const { Permission } = require("../models/Permission");
 
 const xacThucNguoiDung = async (req, res, next) => {
     try {
-        const authHeader = req.header("Authorization");
-
-        if (!authHeader) {
-            return res.status(401).json({ message: "Không có token, từ chối truy cập!" });
-        }
-
-        const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : authHeader;
-
+      const authHeader = req.header("Authorization");
+  
+      if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ message: "Token không hợp lệ hoặc không được cung cấp." });
+      }
+  
+      const token = authHeader.replace("Bearer ", "");
+      
+      if (!token) {
+        return res.status(401).json({ message: "Token không được cung cấp." });
+      }
+  
+      try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log("✅ Decoded token:", decoded);
-
-        const user = await User.findById(decoded.id).populate("role"); // ✅ OK rồi
-        console.log("✅ User found:", user);
-
+        const user = await User.findById(decoded.id).populate("role");
+  
         if (!user) {
-            return res.status(404).json({ message: "Người dùng không tồn tại!" });
+          return res.status(404).json({ message: "Người dùng không tồn tại." });
         }
-
+  
         req.user = user;
+        req.token = token; // Thêm token vào request nếu cần
         next();
-    } catch (error) {
-        console.error("❌ Middleware Error:", error.message);
-
-        if (error.name === "TokenExpiredError") {
-            return res.status(401).json({ message: "Token đã hết hạn!" });
+      } catch (err) {
+        if (err.name === "TokenExpiredError") {
+          return res.status(401).json({ message: "Token đã hết hạn." });
         }
-
-        return res.status(401).json({ message: "Token không hợp lệ!", error: error.message });
+        return res.status(401).json({ message: "Token không hợp lệ.", error: err.message });
+      }
+    } catch (error) {
+      console.error("❌ Middleware Error:", error.message);
+      res.status(500).json({ message: "Lỗi hệ thống.", error: error.message });
     }
 };
+  
+  module.exports = { xacThucNguoiDung };
+
+
 /**
  * Middleware kiểm tra quyền
  */

@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/state'; // nếu bạn lưu redux store ở đây
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Import các trang
 import HomePage from './pages/HomePage';
@@ -19,7 +21,6 @@ import MainLayout from './layouts/MainLayout';
 import AuthLayout from './layouts/AuthLayout';
 import LayoutAdmin from './layouts/admin/LayoutAdmin'; // Nếu bạn có layout admin riêng
 
-
 import "./App.css";
 import ForgotPassword from './pages/user/ForgotPassword';
 import { UserProfile } from './pages/UserProfile';
@@ -31,11 +32,23 @@ import CreateRoom from './pages/admin/CreateRoom';
 import RoomsPages from './pages/RoomsPages';
 import FindRoom from './pages/FindRooms';
 
-
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
+        {/* ToastContainer for global notifications */}
+        <ToastContainer 
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />} />
@@ -49,6 +62,7 @@ function App() {
             <Route path="/followlist" element={<FollowList />} />
             <Route path="/room/:id" element={<DetailRoom />} />
           </Route>
+
           <Route element={<LayoutAdmin />}>
             <Route path="/admin/dashboard" element={<AdminPage />} />
             <Route path="/admin/room" element={<ManagerRoom />} />
@@ -59,7 +73,6 @@ function App() {
             <Route path="/login" element={<SignIn />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
-
           </Route>
         </Routes>
       </BrowserRouter>
