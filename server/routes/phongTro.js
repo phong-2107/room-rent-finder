@@ -66,7 +66,7 @@ router.get("/filter", async (req, res) => {
         // Lọc theo diện tích nếu hợp lệ
         const parsedArea = parseInt(area);
         if (!isNaN(parsedArea)) {
-            filter.dienTich = { $gte: parsedArea };
+            filter.dienTich = { $lte: parsedArea };
         }
 
         // Lọc theo địa điểm nếu là ObjectId hợp lệ
