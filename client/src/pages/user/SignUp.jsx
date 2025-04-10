@@ -12,7 +12,7 @@ const SignUp = () => {
         password: "",
         confirmPassword: "",
         soDienThoai: "",
-        roleName: "Khách hàng",
+        roleName: "Customer", // Default role name
         profileImage: null, // Field for handling profile image
     });
 
