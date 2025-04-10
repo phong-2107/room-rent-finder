@@ -36,10 +36,10 @@
       align-items: center;
       
       .username {
-        font-size: 14px;
-        font-weight: 500;
-        color: #181c32;
-        margin-right: 15px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #6c7293;
+        margin: 0 15px;
         cursor: pointer;
 
         &:hover {
@@ -51,8 +51,8 @@
         background: none;
         border: none;
         cursor: pointer;
-        color: #6c7293;
-        font-size: 16px;
+        color: red;
+        font-size: 20px;
         
         &:hover {
           color: #3699ff;

@@ -9,3 +9,10 @@ export const fetchDiaDiem = async () => {
     if (!res.ok) throw new Error("Không thể lấy danh sách địa điểm");
     return await res.json();
 };
+
+export const fetchRoomCount = async () => {
+    const res = await fetch("http://localhost:3001/api/room/count");
+    if (!res.ok) throw new Error("Không thể lấy số lượng phòng");
+    const data = await res.json();
+    return data.count;
+};

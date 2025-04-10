@@ -9,8 +9,8 @@ const Map = () => {
   };
 
   const center = {
-    lat: 10.762622, // Coordinates for Ho Chi Minh City
-    lng: 106.660172,
+    lat: 10.854296861820961,
+    lng: 106.78361847999372,
   };
 
   return (
