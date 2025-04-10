@@ -84,7 +84,7 @@ const Header = () => {
                         {user ? (
                             <div className="user-info">
                                 <div className="user-dropdown">
-                                    <div className="user-toggle" onClick={toggleDropdown}    data-testid="user-menu-toggle">
+                                    <div className="user-toggle" onClick={toggleDropdown}  data-testid="user-menu-toggle">
                                         <span><strong>{user.taiKhoan}</strong></span>
                                         <div className="icon-menu">
                                             <IoMenu className="icon" />
