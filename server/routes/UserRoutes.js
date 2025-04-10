@@ -50,6 +50,44 @@ router.get("/me", xacThucNguoiDung, async (req, res) => {
   }
 });
 
+
+// API kiểm tra tồn tại số điện thoại hoặc tài khoản (hoTen)
+router.post("/check-exists", async (req, res) => {
+  const { hoTen, soDienThoai } = req.body;
+
+  try {
+    if (!hoTen && !soDienThoai) {
+      return res.status(400).json({ message: "Cần cung cấp tài khoản hoặc số điện thoại để kiểm tra." });
+    }
+
+    let errors = {};
+
+    if (hoTen) {
+      const userWithSameName = await User.findOne({ hoTen });
+      if (userWithSameName) {
+        errors.hoTen = "Tài khoản đã được sử dụng.";
+      }
+    }
+
+    if (soDienThoai) {
+      const userWithSamePhone = await User.findOne({ soDienThoai });
+      if (userWithSamePhone) {
+        errors.soDienThoai = "Số điện thoại đã được sử dụng.";
+      }
+    }
+
+    if (Object.keys(errors).length > 0) {
+      return res.status(409).json({ exists: true, errors });
+    }
+
+    return res.json({ exists: false, message: "Tài khoản và số điện thoại hợp lệ." });
+  } catch (error) {
+    console.error("Lỗi kiểm tra tài khoản/sđt:", error.message);
+    res.status(500).json({ message: "Lỗi server", error: error.message });
+  }
+});
+
+
 // API cập nhật thông tin người dùng
 router.put(
   "/update-profile",
@@ -122,6 +160,28 @@ router.put(
     }
   }
 );
+
+// Gán Role cho User
+router.put("/:id/role", async (req, res) => {
+  try {
+    const { roleId } = req.body;
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { role: roleId },
+      { new: true }
+    ).populate({
+      path: "role",
+      populate: { path: "permissions" }
+    });
+
+    if (!user) return res.status(404).json({ message: "Người dùng không tồn tại" });
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Lỗi gán role cho người dùng", error: error.message });
+  }
+});
+
 
 // API đổi mật khẩu
 router.put(

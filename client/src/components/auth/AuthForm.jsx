@@ -17,11 +17,11 @@ const AuthForm = ({
         <div className="form">
             {isSignUp && (
                 <div className="form-group">
-                    <label htmlFor="hoTen">Họ và Tên</label>
+                    <label htmlFor="hoTen">Tài Khoản</label>
                     <input
                         id="hoTen"
                         type="text"
-                        placeholder="Nhập họ và tên"
+                        placeholder="Nhập tên tài khoản"
                         value={form.hoTen}
                         onChange={(e) => onChange("hoTen", e.target.value)}
                         required
@@ -29,7 +29,7 @@ const AuthForm = ({
                 </div>
             )}
 
-            {(isSignIn ) && (
+            {(isSignIn) && (
                 <div className="form-group">
                     <label htmlFor="taiKhoan">Tài khoản</label>
                     <input
@@ -99,17 +99,6 @@ const AuthForm = ({
                 </div>
             )}
 
-            {/* {isSignUp && (
-                <div className="form-group">
-                    <label htmlFor="profileImage">Ảnh đại diện</label>
-                    <input
-                        id="profileImage"
-                        type="file"
-                        accept="image/*"
-                        onChange={onFileChange} // Handle file input
-                    />
-                </div>
-            )} */}
 
             {error && <p className="error">{error}</p>}
 

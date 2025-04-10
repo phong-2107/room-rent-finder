@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const { xacThucNguoiDung, kiemTraQuyen } = require("../middleware/authMiddleware");
 const { PhongTro } = require("../models/PhongTro");
 const { DiaDiem } = require("../models/DiaDiem");
@@ -52,6 +53,65 @@ router.post("/", async (req, res) => {
         res.status(201).json({ message: "Thêm phòng trọ thành công!", phongMoi });
     } catch (error) {
         res.status(500).json({ message: "Lỗi khi thêm phòng trọ", error: error.message });
+    }
+});
+
+
+// Lọc danh sách phòng trọ
+router.get("/filter", async (req, res) => {
+    try {
+        const { area, location, price } = req.query;
+        const filter = {};
+
+        // Lọc theo diện tích nếu hợp lệ
+        const parsedArea = parseInt(area);
+        if (!isNaN(parsedArea)) {
+            filter.dienTich = { $lte: parsedArea };
+        }
+
+        // Lọc theo địa điểm nếu là ObjectId hợp lệ
+        if (
+            location &&
+            typeof location === "string" &&
+            location.trim().length === 24 &&
+            /^[a-fA-F0-9]{24}$/.test(location.trim())
+        ) {
+            filter.diaDiem = new mongoose.Types.ObjectId(location.trim());
+        }
+
+        // Lọc theo mức giá nếu có
+        if (price && typeof price === "string") {
+            switch (price) {
+                case "duoi1tr":
+                    filter.gia = { $lt: 1000000 };
+                    break;
+                case "1-3tr":
+                    filter.gia = { $gte: 1000000, $lte: 3000000 };
+                    break;
+                case "3-5tr":
+                    filter.gia = { $gte: 3000000, $lte: 5000000 };
+                    break;
+                case "tren5tr":
+                    filter.gia = { $gt: 5000000 };
+                    break;
+                default:
+                    break;
+            }
+        }
+        const danhSachPhong = await PhongTro.find(filter)
+            .populate("nguoiDang", "hoTen email")
+            .populate("diaDiem");
+        if (!danhSachPhong || danhSachPhong.length === 0) {
+            return res.status(200).json([]);
+        }
+
+        res.status(200).json(danhSachPhong);
+    } catch (error) {
+        console.error("❌ Lỗi khi lọc phòng trọ:", error.stack);
+        res.status(500).json({
+            message: "Lỗi khi lọc danh sách phòng trọ",
+            error: error.message,
+        });
     }
 });
 
@@ -207,6 +267,8 @@ router.get("/by-location/:diaDiemId", async (req, res) => {
         res.status(500).json({ message: "Lỗi khi tìm phòng theo địa điểm", error: error.message });
     }
 });
+
+
 
 
 

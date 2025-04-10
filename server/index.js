@@ -10,7 +10,10 @@ const phongTroRoutes = require("./routes/phongTro");
 const diaDiemRoutes = require("./routes/DiaDiem");
 const contactRoutes = require("./routes/lienhe");
 const khachHangRoutes = require("./routes/khachhang");
-// (Giữ lại nếu bạn vẫn muốn sử dụng route phongTro)
+
+const permissionsRoutes = require("./routes/permission");
+const rolesRoutes = require("./routes/role");
+
 const app = express();
 
 // ------------------- Middlewares -------------------
@@ -41,5 +44,8 @@ app.use("/api/room", phongTroRoutes);
 app.use("/api/diadiem", diaDiemRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/khachhang", khachHangRoutes);
+
+app.use("/api/permissions", permissionsRoutes);
+app.use("/api/roles", rolesRoutes);
 
 module.exports = app; 

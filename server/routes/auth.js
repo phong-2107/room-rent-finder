@@ -98,7 +98,17 @@ router.post(
             // 4. Lưu user vào DB
             await newUser.save();
 
-            res.status(201).json({ message: "Đăng ký thành công!", user: newUser });
+            // Tạo token JWT với đầy đủ thông tin cần thiết
+            const token = jwt.sign(
+                {
+                    id: newUser._id,
+                    role: newUser.role?.tenRole || "Customer",
+                },
+                process.env.JWT_SECRET,
+                { expiresIn: "7d" }
+            );
+
+            res.status(201).json({ message: "Đăng ký thành công!", token, user: newUser });
         } catch (error) {
             console.error("Lỗi khi đăng ký:", error.message);
             res.status(500).json({ message: "Lỗi đăng ký!", error: error.message });
@@ -157,7 +167,7 @@ router.post(
             const token = jwt.sign(
                 {
                     id: user._id,
-                    role: user.role?.tenRole || "User",
+                    role: user.role?.tenRole || "Customer",
                 },
                 process.env.JWT_SECRET,
                 { expiresIn: "7d" }
@@ -174,9 +184,9 @@ router.post(
             //     user: userResponse,
             //     role: user.role?.tenRole || "Customer",
             // Đảm bảo trả về cả token và thông tin người dùng
-            res.status(200).json({ 
-                token, 
-                user: userResponse 
+            res.status(200).json({
+                token,
+                user: userResponse
             });
         } catch (error) {
             console.error("Lỗi đăng nhập:", error.message);
@@ -188,50 +198,50 @@ router.post(
 /**
   API Quên mật khẩu
  */
-  router.post(
+router.post(
     "/forgot-password",
     [
-      body("email").isEmail().withMessage("Email không hợp lệ."),
+        body("email").isEmail().withMessage("Email không hợp lệ."),
     ],
     async (req, res) => {
-      try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-          return res.status(400).json({ errors: errors.array() });
-        }
-  
-        const { email } = req.body;
-  
-        // Check if the email exists
-        const user = await User.findOne({ email });
-        if (!user) {
-          return res.status(404).json({ message: "Email không tồn tại trong hệ thống." });
-        }
-  
-        // Generate a new password
-        const newPassword = Math.random().toString(36).slice(-8); // Generate a random 8-character password
-  
-        // Save the new password to the database (pre('save') will handle hashing)
-        user.matKhau = newPassword; // Assign plain text password
-        await user.save(); // The pre('save') hook will hash the password
-  
-        // Configure the email transport
-        const transporter = nodemailer.createTransport({
-          host: "smtp.gmail.com",
-          port: 587,
-          secure: false, // TLS
-          auth: {
-            user: process.env.SMTP_USER, // Your email
-            pass: process.env.SMTP_PASS, // App password
-          },
-        });
-  
-        // Email content
-        const mailOptions = {
-          from: `"Hệ thống TimTro24h" <${process.env.SMTP_USER}>`,
-          to: email,
-          subject: "Khôi phục mật khẩu",
-          html: `
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+
+            const { email } = req.body;
+
+            // Check if the email exists
+            const user = await User.findOne({ email });
+            if (!user) {
+                return res.status(404).json({ message: "Email không tồn tại trong hệ thống." });
+            }
+
+            // Generate a new password
+            const newPassword = Math.random().toString(36).slice(-8); // Generate a random 8-character password
+
+            // Save the new password to the database (pre('save') will handle hashing)
+            user.matKhau = newPassword; // Assign plain text password
+            await user.save(); // The pre('save') hook will hash the password
+
+            // Configure the email transport
+            const transporter = nodemailer.createTransport({
+                host: "smtp.gmail.com",
+                port: 587,
+                secure: false, // TLS
+                auth: {
+                    user: process.env.SMTP_USER, // Your email
+                    pass: process.env.SMTP_PASS, // App password
+                },
+            });
+
+            // Email content
+            const mailOptions = {
+                from: `"Hệ thống TimTro24h" <${process.env.SMTP_USER}>`,
+                to: email,
+                subject: "Khôi phục mật khẩu",
+                html: `
             <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
               <h2>Khôi phục mật khẩu</h2>
               <p>Mật khẩu mới của bạn là:</p>
@@ -239,18 +249,18 @@ router.post(
               <p>Vui lòng đăng nhập và thay đổi mật khẩu để bảo mật tài khoản.</p>
             </div>
           `,
-        };
-  
-        // Send the email
-        await transporter.sendMail(mailOptions);
-  
-        res.status(200).json({ message: "Mật khẩu mới đã được gửi đến email của bạn." });
-      } catch (error) {
-        console.error("Lỗi quên mật khẩu:", error.message);
-        res.status(500).json({ message: "Đã xảy ra lỗi, vui lòng thử lại sau." });
-      }
+            };
+
+            // Send the email
+            await transporter.sendMail(mailOptions);
+
+            res.status(200).json({ message: "Mật khẩu mới đã được gửi đến email của bạn." });
+        } catch (error) {
+            console.error("Lỗi quên mật khẩu:", error.message);
+            res.status(500).json({ message: "Đã xảy ra lỗi, vui lòng thử lại sau." });
+        }
     }
-  );
+);
 
 
 router.post("/logout", (req, res) => {
