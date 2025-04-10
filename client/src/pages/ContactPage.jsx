@@ -22,12 +22,18 @@ const ContactPage = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (formData.name.trim().length < 3) {
+    if (!formData.name.trim()) {
+      newErrors.name = "Vui lòng nhập họ tên.";
+    } else if (formData.name.trim().length < 3) {
       newErrors.name = "Họ tên phải có ít nhất 3 ký tự.";
     }
-    if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+  
+    if (!formData.email.trim()) {
+      newErrors.email = "Vui lòng nhập email.";
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
       newErrors.email = "Email không hợp lệ.";
     }
+  
     if (!formData.phone) {
       newErrors.phone = "Vui lòng nhập số điện thoại.";
     } else if (!/^\d+$/.test(formData.phone)) {
@@ -37,9 +43,13 @@ const ContactPage = () => {
     } else if (!/^((\+84|0)[3|5|7|8|9])+([0-9]{8})$/.test(formData.phone)) {
       newErrors.phone = "Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại Việt Nam hợp lệ.";
     }
-    if (formData.message.trim().length < 10) {
+  
+    if (!formData.message.trim()) {
+      newErrors.message = "Vui lòng nhập nội dung.";
+    } else if (formData.message.trim().length < 10) {
       newErrors.message = "Nội dung phải có ít nhất 10 ký tự.";
     }
+  
     return newErrors;
   };
 
@@ -100,7 +110,6 @@ const ContactPage = () => {
                       className={`form-input ${errors.name ? "input-error" : ""}`}
                       value={formData.name}
                       onChange={handleChange}
-                      required
                     />
                   </div>
                   {errors.name && <p className="error-text">{errors.name}</p>}
@@ -110,13 +119,12 @@ const ContactPage = () => {
                 <div className="form-group">
                   <div className="input-container">
                     <input
-                      type="email"
+                      type="text"
                       name="email"
                       placeholder="Mail"
                       className={`form-input ${errors.email ? "input-error" : ""}`}
                       value={formData.email}
                       onChange={handleChange}
-                      required
                     />
                   </div>
                   {errors.email && <p className="error-text">{errors.email}</p>}
@@ -132,7 +140,6 @@ const ContactPage = () => {
                       className={`form-input ${errors.phone ? "input-error" : ""}`}
                       value={formData.phone}
                       onChange={handleChange}
-                      required
                     />
                   </div>
                   {errors.phone && <p className="error-text">{errors.phone}</p>}
@@ -147,7 +154,6 @@ const ContactPage = () => {
                       className={`form-textarea ${errors.message ? "input-error" : ""}`}
                       value={formData.message}
                       onChange={handleChange}
-                      required
                     />
                   </div>
                   {errors.message && <p className="error-text">{errors.message}</p>}

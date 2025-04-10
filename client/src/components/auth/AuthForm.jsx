@@ -117,6 +117,7 @@ const AuthForm = ({
             )}
 
             <button
+                type="submit"
                 className={
                     isSignIn ? "login-btn"
                         : isSignUp ? "register-btn"
