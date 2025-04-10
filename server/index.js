@@ -2,12 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
+const path = require('path');
 // Import các routes mới
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/UserRoutes");
 const phongTroRoutes = require("./routes/phongTro");
 const diaDiemRoutes = require("./routes/DiaDiem");
+const contactRoutes = require("./routes/lienhe");
 // (Giữ lại nếu bạn vẫn muốn sử dụng route phongTro)
 const app = express();
 
@@ -16,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-
+app.use('/images', express.static(path.join(__dirname, 'images')));
 // ------------------- Kết nối MongoDB -------------------
 const PORT = process.env.PORT || 3001;
 mongoose
@@ -34,4 +35,5 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/room", phongTroRoutes);
 app.use("/api/diadiem", diaDiemRoutes);
+app.use("/api/contact", contactRoutes);
 module.exports = app; 

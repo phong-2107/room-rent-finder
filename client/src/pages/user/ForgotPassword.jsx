@@ -9,6 +9,7 @@ const ForgotPassword = () => {
 
   const handleChange = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
+    setError(""); // Clear error when user starts typing
   };
 
   const handleSubmit = async () => {
@@ -18,12 +19,22 @@ const ForgotPassword = () => {
     }
 
     try {
-      // TODO: Gọi API khôi phục mật khẩu ở đây
-      console.log("Sending password reset to:", form.email);
+      const response = await fetch("http://localhost:3001/api/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Đã xảy ra lỗi.");
+      }
+
+      const data = await response.json();
+      setMessage(data.message);
       setError("");
-      setMessage("Liên kết khôi phục mật khẩu đã được gửi đến email.");
     } catch (err) {
-      setError("Đã xảy ra lỗi, vui lòng thử lại.");
+      setError(err.message || "Đã xảy ra lỗi, vui lòng thử lại.");
     }
   };
 
@@ -44,6 +55,9 @@ const ForgotPassword = () => {
             buttonStyle={{ backgroundColor: "#3b82f6", color: "#fff" }}
           />
           {message && <p className="success-message">{message}</p>}
+          <div className="forgot-redirect">
+            Quay trở lại <a href="/login">Đăng nhập</a>
+        </div>
         </div>
       </div>
       <div className="footer-login">
@@ -52,6 +66,7 @@ const ForgotPassword = () => {
           <img src="/assets/images/logo1.png" alt="logo" />
         </div>
       </div>
+      
     </div>
   );
 };

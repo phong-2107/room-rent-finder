@@ -22,7 +22,7 @@ const Map = () => {
       <div className="place-2">
         <div className="content-map">
           <div className="map-container">
-            <LoadScript googleMapsApiKey="AIzaSyBlnuQeQdc1-TQb_zYzW0XbQ6DzcXP2BIc">
+            <LoadScript googleMapsApiKey="AIzaSyDXjFMXDAqOLIRoPtF80LcU2eM0f_pXCy4">
               <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}

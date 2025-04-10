@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema(
         anhDaiDien: { type: String, default: "" },
         taiKhoan: { type: String, required: true, unique: true },
         matKhau: { type: String, required: true },
-        loaiUser: { type: String, enum: ["Admin", "KhachHang", "NhanVien"], required: true },
+        loaiUser: { type: String, enum: ["Admin", "Khách hàng", "Nhân viên"], required: true },
         role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
     },
     { timestamps: true }
