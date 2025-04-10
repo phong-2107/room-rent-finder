@@ -21,6 +21,9 @@ const SignIn = () => {
             saveToken(data.token, form.remember);
             saveUser(data.user, form.remember);
 
+            console.log("User data:", data.user);
+            console.log("Token:", data.token);
+
             const userRole = data.user?.role?.tenRole || "Customer";
 
             const redirectPath = ROLE_REDIRECT[userRole] || "/";
