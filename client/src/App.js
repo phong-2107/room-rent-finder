@@ -31,13 +31,14 @@ import ManagerRoom from './pages/admin/ManagerRoom';
 import CreateRoom from './pages/admin/CreateRoom';
 import RoomsPages from './pages/RoomsPages';
 import FindRoom from './pages/FindRooms';
+import ViewRoom from './pages/admin/ViewRoom';
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         {/* ToastContainer for global notifications */}
-        <ToastContainer 
+        <ToastContainer
           position="top-right"
           autoClose={3000}
           hideProgressBar={false}
@@ -67,6 +68,7 @@ function App() {
             <Route path="/admin/dashboard" element={<AdminPage />} />
             <Route path="/admin/room" element={<ManagerRoom />} />
             <Route path="/admin/create-room" element={<CreateRoom />} />
+            <Route path="/admin/room/:id" element={<ViewRoom />} />
           </Route>
 
           <Route element={<AuthLayout />}>

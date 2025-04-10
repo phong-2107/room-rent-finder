@@ -94,6 +94,14 @@
         border-bottom: 1px solid #f0f0f0;
         vertical-align: middle;
       }
+      tr {
+        transition: background-color 0.2s ease;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #f5f5f5;
+        }
+      }
       
       th {
         color: #b5b5c3;

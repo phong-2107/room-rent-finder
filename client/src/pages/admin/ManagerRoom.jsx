@@ -39,7 +39,6 @@ const ManagerRoom = () => {
   // Handler tìm kiếm
   const handleSearch = (query) => {
     console.log('Tìm kiếm:', query);
-    // Có thể thêm logic lọc ở đây
   };
 
   return (

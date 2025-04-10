@@ -14,6 +14,9 @@ const khachHangRoutes = require("./routes/khachhang");
 const permissionsRoutes = require("./routes/permission");
 const rolesRoutes = require("./routes/role");
 
+
+const adminRoom = require("./routes/admin/adminRoom.routes");
+
 const app = express();
 
 // ------------------- Middlewares -------------------
@@ -47,5 +50,9 @@ app.use("/api/khachhang", khachHangRoutes);
 
 app.use("/api/permissions", permissionsRoutes);
 app.use("/api/roles", rolesRoutes);
+
+
+app.use("/api/admin/rooms", adminRoom);
+
 
 module.exports = app; 
