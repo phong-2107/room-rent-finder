@@ -9,8 +9,8 @@ const Map = () => {
   };
 
   const center = {
-    lat: 10.762622, // Coordinates for Ho Chi Minh City
-    lng: 106.660172,
+    lat: 10.854296861820961,
+    lng: 106.78361847999372,
   };
 
   return (
@@ -22,7 +22,7 @@ const Map = () => {
       <div className="place-2">
         <div className="content-map">
           <div className="map-container">
-            <LoadScript googleMapsApiKey="AIzaSyBlnuQeQdc1-TQb_zYzW0XbQ6DzcXP2BIc">
+            <LoadScript googleMapsApiKey="AIzaSyDXjFMXDAqOLIRoPtF80LcU2eM0f_pXCy4">
               <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}

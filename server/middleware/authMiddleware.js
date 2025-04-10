@@ -34,10 +34,6 @@ const xacThucNguoiDung = async (req, res, next) => {
         return res.status(401).json({ message: "Token không hợp lệ!", error: error.message });
     }
 };
-
-module.exports = { xacThucNguoiDung };
-
-
 /**
  * Middleware kiểm tra quyền
  */

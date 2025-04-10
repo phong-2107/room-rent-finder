@@ -4,7 +4,7 @@ import "../../styles/user/SignIn.scss";
 import AuthForm from "../../components/auth/AuthForm";
 import { login } from "../../features/auth/authApi";
 import { saveToken, saveUser } from "../../utils/storage";
-
+import ROLE_REDIRECT from "../../constants/roleRedirect";
 const SignIn = () => {
     const [form, setForm] = useState({ taiKhoan: "", password: "", remember: false });
     const [error, setError] = useState("");
@@ -19,7 +19,11 @@ const SignIn = () => {
             const data = await login(form.taiKhoan, form.password);
             saveToken(data.token, form.remember);
             saveUser(data.user, form.remember);
-            navigate("/");
+
+            const userRole = data.role || "Customer";
+            const redirectPath = ROLE_REDIRECT[userRole] || "/";
+
+            navigate(redirectPath);
         } catch (err) {
             setError(err.message);
         }

@@ -7,6 +7,7 @@ import Map from "../components/Home/Map";
 
 
 import "../styles/home/style.scss";
+import Maps from "../components/Home/Maps";
 
 const HomePage = () => {
     return (
@@ -16,6 +17,7 @@ const HomePage = () => {
                 <Slider />
                 <Categories />
                 <Location />
+                {/* <Map></Map> */}
                 <Map></Map>
             </div>
         </div>

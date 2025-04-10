@@ -2,7 +2,7 @@ const express = require("express");
 const { xacThucNguoiDung, kiemTraQuyen } = require("../middleware/authMiddleware");
 const { PhongTro } = require("../models/PhongTro");
 const { DiaDiem } = require("../models/DiaDiem");
-
+const { getLatLngFromAddress } = require("../utils/geocode");
 const router = express.Router();
 
 /**
@@ -52,6 +52,71 @@ router.post("/", async (req, res) => {
         res.status(201).json({ message: "Thêm phòng trọ thành công!", phongMoi });
     } catch (error) {
         res.status(500).json({ message: "Lỗi khi thêm phòng trọ", error: error.message });
+    }
+});
+
+router.get("/count", async (req, res) => {
+    try {
+        const count = await PhongTro.countDocuments();
+        res.status(200).json({ count });
+    } catch (error) {
+        console.error("Lỗi khi đếm phòng trọ:", error);
+        res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
+    }
+});
+
+/**
+ * Lấy tất cả địa chỉ cụ thể
+ */
+router.get("/diachi", async (req, res) => {
+    try {
+        const danhSach = await PhongTro.find({}, "diaChiCuThe"); // chỉ lấy trường diaChiCuThe
+        res.json(danhSach);
+    } catch (error) {
+        res.status(500).json({ message: "Lỗi khi lấy danh sách địa chỉ", error: error.message });
+    }
+});
+
+router.get("/vi-tri", async (req, res) => {
+    try {
+        const danhSach = await PhongTro.find({}, "tieuDe diaChiCuThe");
+
+        const viTriList = danhSach.map((item) => {
+            const [lat, lng] = item.diaChiCuThe.split(",").map(parseFloat);
+            return {
+                lat,
+                lng,
+                ten_dia_diem: item.tieuDe
+            };
+        });
+
+        res.json(viTriList);
+    } catch (error) {
+        res.status(500).json({ message: "Lỗi khi xử lý vị trí", error: error.message });
+    }
+});
+
+
+router.get("/geocode", async (req, res) => {
+    try {
+        const { address } = req.query;
+
+        if (!address || address.trim() === "") {
+            return res.status(400).json({ message: "Vui lòng cung cấp địa chỉ hợp lệ." });
+        }
+
+        const result = await getLatLngFromAddress(address);
+
+        if (!result) {
+            return res.status(500).json({ message: "Không thể lấy tọa độ từ địa chỉ." });
+        }
+
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({
+            message: "Đã xảy ra lỗi khi xử lý yêu cầu.",
+            error: error.message,
+        });
     }
 });
 
@@ -142,5 +207,27 @@ router.get("/by-location/:diaDiemId", async (req, res) => {
         res.status(500).json({ message: "Lỗi khi tìm phòng theo địa điểm", error: error.message });
     }
 });
+
+
+
+
+/**
+ * Lấy địa chỉ cụ thể theo ID phòng trọ
+ */
+router.get("/diachi/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const phong = await PhongTro.findById(id, "diaChiCuThe");
+
+        if (!phong) {
+            return res.status(404).json({ message: "Không tìm thấy phòng trọ!" });
+        }
+
+        res.json(phong);
+    } catch (error) {
+        res.status(500).json({ message: "Lỗi khi lấy địa chỉ theo ID", error: error.message });
+    }
+});
+
 
 module.exports = router;

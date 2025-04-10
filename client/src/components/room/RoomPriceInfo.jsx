@@ -15,6 +15,11 @@ const RoomPriceInfo = ({ price, area, status }) => {
         <div className="label">Tình trạng</div>
         <div className="status">{status}</div>
       </div>
+
+      <div className="area-box">
+        <div className="label">Tình trạng</div>
+        <div className="status">{status}</div>
+      </div>
     </div>
   );
 };

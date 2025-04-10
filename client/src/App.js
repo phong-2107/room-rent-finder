@@ -45,16 +45,12 @@ function App() {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/changepassword" element={<ChangePassword />} />
             <Route path="/followlist" element={<FollowList />} />
-            <Route path="/room/:id" element={<DetailRoom />} /> {/* Thay đổi thành trang chi tiết phòng */}
-
+            <Route path="/room/:id" element={<DetailRoom />} />
           </Route>
-
-
           <Route element={<LayoutAdmin />}>
             <Route path="/admin/dashboard" element={<AdminPage />} />
             <Route path="/admin/room" element={<ManagerRoom />} />
             <Route path="/admin/create-room" element={<CreateRoom />} />
-
           </Route>
 
           <Route element={<AuthLayout />}>

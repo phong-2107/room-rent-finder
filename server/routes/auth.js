@@ -35,6 +35,18 @@ const upload = multer({
     },
 });
 
+
+router.get("/Customer/count", async (req, res) => {
+    try {
+        const khachHangCount = await User.countDocuments().populate("role").where("role.tenRole").equals("Customer");
+
+        res.status(200).json({ count: khachHangCount });
+    } catch (err) {
+        console.error("Lỗi khi đếm khách hàng:", err.message);
+        res.status(500).json({ message: "Lỗi máy chủ", error: err.message });
+    }
+});
+
 // ------------------ API Đăng ký ------------------
 router.post(
     "/register",
@@ -154,7 +166,12 @@ router.post(
             delete userResponse.loginAttempts;
             delete userResponse.lockUntil;
 
-            res.status(200).json({ token, user: userResponse });
+            // Xác định đường dẫn điều hướng
+            res.status(200).json({
+                token,
+                user: userResponse,
+                role: user.role?.tenRole || "Customer",
+            });
         } catch (error) {
             console.error("Lỗi đăng nhập:", error.message);
             res.status(500).json({ message: "Lỗi máy chủ!", error: error.message });
