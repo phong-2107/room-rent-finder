@@ -11,11 +11,27 @@ const Header = () => {
     const [user, setUser] = useState(null);
     const [showMenu, setShowMenu] = useState(false);
     const navigate = useNavigate();
+
+    const toggleDropdown = () => {
+        setShowMenu(prev => !prev);
+    };  
     useEffect(() => {
         const loggedInUser = getUser();
         if (loggedInUser) {
             setUser(loggedInUser);
         }
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (!event.target.closest(".user-dropdown")) {
+                setShowMenu(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
     }, []);
 
     const handleLogout = async () => {
@@ -68,7 +84,7 @@ const Header = () => {
                         {user ? (
                             <div className="user-info">
                                 <div className="user-dropdown">
-                                    <div className="user-toggle">
+                                    <div className="user-toggle" onClick={toggleDropdown}    data-testid="user-menu-toggle">
                                         <span><strong>{user.taiKhoan}</strong></span>
                                         <div className="icon-menu">
                                             <IoMenu className="icon" />
@@ -76,7 +92,7 @@ const Header = () => {
 
                                     </div>
 
-                                    <div className="dropdown-box">
+                                    <div className={`dropdown-box ${showMenu ? "show" : ""}`}>
                                         <div className="dropdown-item">
                                             <a href="/profile">Hồ sơ</a>
                                         </div>

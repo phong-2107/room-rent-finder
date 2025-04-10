@@ -178,6 +178,7 @@ const ProfileForm = ({ user, onProfileUpdate }) => {
                 <div className="profile-form__label-text">Họ tên <span className="required-field">*</span></div>
               </div>
               <input
+                readOnly 
                 type="text"
                 name="hoTen"
                 className={`profile-form__input ${errors.hoTen ? "is-invalid" : ""}`}

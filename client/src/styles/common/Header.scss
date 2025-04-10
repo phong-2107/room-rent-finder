@@ -110,6 +110,7 @@
           }
           
           .dropdown-box {
+            display: none;
             position: absolute;
             top: 110%;
             right: 0;
@@ -118,8 +119,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
             min-width: 150px;
             z-index: 100;
-            display: none; /* Ẩn mặc định */
           }
+
+          .dropdown-box.show {
+            display: block;
+          }
+          
           
           .dropdown-item {
             padding: 10px 16px;
@@ -133,9 +138,9 @@
           }
           
           /* ✅ Hiển thị menu khi hover */
-          .user-dropdown:hover .dropdown-box {
-            display: block;
-          }
+          // .user-dropdown:hover .dropdown-box {
+          //   display: block;
+          // }
           
           
         }
