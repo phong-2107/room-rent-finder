@@ -153,6 +153,7 @@ router.post(
             user.lockUntil = null;
             await user.save();
 
+            // Tạo token JWT với đầy đủ thông tin cần thiết
             const token = jwt.sign(
                 {
                     id: user._id,
@@ -168,10 +169,14 @@ router.post(
             delete userResponse.lockUntil;
 
             // Xác định đường dẫn điều hướng
-            res.status(200).json({
-                token,
-                user: userResponse,
-                role: user.role?.tenRole || "Customer",
+            // res.status(200).json({
+            //     token,
+            //     user: userResponse,
+            //     role: user.role?.tenRole || "Customer",
+            // Đảm bảo trả về cả token và thông tin người dùng
+            res.status(200).json({ 
+                token, 
+                user: userResponse 
             });
         } catch (error) {
             console.error("Lỗi đăng nhập:", error.message);

@@ -183,6 +183,12 @@
       position: relative;
       top: 54px;
     }
+
+    &__contain{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
   
     &__title {
       align-items: center;
@@ -383,3 +389,159 @@
   .forgot-redirect {
     margin-top: 15px;
   }
+
+  /* Change Password Form Specific Styles */
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.toggle-password-button {
+  position: absolute;
+  right: 10px;
+  top: 53px;
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 12px;
+  z-index: 10;
+}
+
+.toggle-password-button:hover {
+  color: #333;
+}
+
+.error-message {
+  color: #e53e3e;
+  font-size: 14px;
+  margin-top: 85px;
+  font-family: "Inter", Helvetica;
+}
+
+.password-hint {
+  color: #666;
+  font-size: 14px;
+  margin-top: 85px;
+  font-family: "Inter", Helvetica;
+}
+
+.required-field {
+  color: #e53e3e;
+}
+
+.is-invalid {
+  border-color: #e53e3e !important;
+}
+
+/* Toast Notification Custom Styles */
+.Toastify__toast {
+  border-radius: 8px;
+  font-family: "Inter", Helvetica;
+  margin-top: 15px;
+}
+
+.Toastify__toast--success {
+  background-color: #48bb78;
+  color: #fff;
+}
+
+.Toastify__toast--error {
+  background-color: #e53e3e;
+  color: #fff;
+}
+
+.Toastify__toast-body {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 10px;
+}
+
+.Toastify__progress-bar {
+  height: 4px;
+}
+
+/* Responsive styles for mobile devices */
+@media screen and (max-width: 768px) {
+  .profile-form__container {
+    padding: 15px;
+  }
+  
+  .profile-form__title-text {
+    font-size: 24px;
+  }
+  
+  .profile-form__label-text {
+    font-size: 18px;
+  }
+  
+  .profile-form__button-wrapper {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  
+  .profile-form__button {
+    width: 100%;
+  }
+}
+
+
+/* Profile Form Additional Styles */
+.avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #666;
+  font-family: "Inter", Helvetica;
+  font-size: 16px;
+}
+
+.profile-form__avatar-button {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Ensure Toast Styles are consistent across components */
+.Toastify__toast {
+  border-radius: 8px;
+  font-family: "Inter", Helvetica;
+}
+
+.Toastify__toast--success {
+  background-color: #48bb78;
+}
+
+.Toastify__toast--error {
+  background-color: #e53e3e;
+}
+
+.Toastify__toast-body {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 10px;
+}
+
+.Toastify__progress-bar {
+  height: 4px;
+}
+
+/* Responsive styles for mobile devices */
+@media screen and (max-width: 768px) {
+  .profile-form__avatar-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .profile-form__button-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .profile-form__button {
+    width: 100%;
+  }
+}
