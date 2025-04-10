@@ -17,17 +17,19 @@ const SignIn = () => {
     const handleLogin = async () => {
         try {
             const data = await login(form.taiKhoan, form.password);
+
             saveToken(data.token, form.remember);
             saveUser(data.user, form.remember);
 
-            const userRole = data.role || "Customer";
-            const redirectPath = ROLE_REDIRECT[userRole] || "/";
+            const userRole = data.user?.role?.tenRole || "Customer";
 
+            const redirectPath = ROLE_REDIRECT[userRole] || "/";
             navigate(redirectPath);
         } catch (err) {
             setError(err.message);
         }
     };
+
 
     return (
         <div className="page-wrapper">

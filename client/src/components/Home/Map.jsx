@@ -1,17 +1,36 @@
-import React from 'react';
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import React, { useEffect, useRef } from 'react';
 import "../../styles/Map.scss";
 
 const Map = () => {
-  const containerStyle = {
-    width: '100%',
-    height: '500px',
-  };
+  const mapRef = useRef(null);
 
-  const center = {
-    lat: 10.854296861820961,
-    lng: 106.78361847999372,
-  };
+  useEffect(() => {
+    const initMap = () => {
+      if (window.google && mapRef.current) {
+        new window.google.maps.Map(mapRef.current, {
+          center: { lat: 10.859493, lng: 106.781505 },
+          zoom: 12,
+          fullscreenControl: true,
+          zoomControl: true,
+          streetViewControl: true,
+          mapTypeControl: false,
+        });
+      }
+    };
+
+    // Nếu API đã sẵn sàng
+    if (window.google) {
+      initMap();
+    } else {
+      // Đợi script Google Maps tải xong
+      const interval = setInterval(() => {
+        if (window.google) {
+          clearInterval(interval);
+          initMap();
+        }
+      }, 100);
+    }
+  }, []);
 
   return (
     <div className="map-section">
@@ -22,21 +41,10 @@ const Map = () => {
       <div className="place-2">
         <div className="content-map">
           <div className="map-container">
-            <LoadScript googleMapsApiKey="AIzaSyDXjFMXDAqOLIRoPtF80LcU2eM0f_pXCy4">
-              <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={12}
-                options={{
-                  fullscreenControl: true,
-                  zoomControl: true,
-                  streetViewControl: true,
-                  mapTypeControl: false,
-                }}
-              >
-                {/* You can add markers here if needed */}
-              </GoogleMap>
-            </LoadScript>
+            <div
+              ref={mapRef}
+              style={{ width: '100%', height: '500px' }}
+            ></div>
           </div>
         </div>
       </div>

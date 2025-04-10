@@ -35,7 +35,7 @@ const Maps = () => {
             <div className="place-2">
                 <div className="content-map">
                     <div className="map-container">
-                        <LoadScript googleMapsApiKey="AIzaSyDXjFMXDAqOLIRoPtF80LcU2eM0f_pXCy4">
+                        <LoadScript googleMapsApiKey="AIzaSyCu7FX0KUfmR91YEYE5K0MqBsFcC4nc3qE">
                             <GoogleMap
                                 mapContainerStyle={containerStyle}
                                 center={center}

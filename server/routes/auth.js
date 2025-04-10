@@ -98,7 +98,17 @@ router.post(
             // 4. Lưu user vào DB
             await newUser.save();
 
-            res.status(201).json({ message: "Đăng ký thành công!", user: newUser });
+            // Tạo token JWT với đầy đủ thông tin cần thiết
+            const token = jwt.sign(
+                {
+                    id: newUser._id,
+                    role: newUser.role?.tenRole || "Customer",
+                },
+                process.env.JWT_SECRET,
+                { expiresIn: "7d" }
+            );
+
+            res.status(201).json({ message: "Đăng ký thành công!", token, user: newUser });
         } catch (error) {
             console.error("Lỗi khi đăng ký:", error.message);
             res.status(500).json({ message: "Lỗi đăng ký!", error: error.message });
