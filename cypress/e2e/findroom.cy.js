@@ -26,6 +26,8 @@ describe("TÌM KIẾM PHÒNG TRỌ GIÁ RẺ", () => {
       
         // Kiểm tra URL và kết quả
         cy.url().should("include", "/findroom");
+        cy.wait(3000);
+
         cy.contains("Hà Nội - Cầu Giấy").should("exist");
       });
       
@@ -47,6 +49,7 @@ describe("TÌM KIẾM PHÒNG TRỌ GIÁ RẺ", () => {
       
         // Kiểm tra URL
         cy.url().should("include", "/findroom");
+        cy.wait(3000);
       
         // Kiểm tra tất cả các phần tử hiển thị giá đều nằm trong khoảng 1 - 3 triệu
         cy.get('.text-wrapper-21').each(($el) => {

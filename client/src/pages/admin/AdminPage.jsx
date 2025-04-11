@@ -1,60 +1,51 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { format } from "date-fns";
 import '../../styles/admin/dashboard.scss';
-import RoomListingsTable from '../../admin/components/RoomListingsTable ';
-import { fetchRooms, fetchRoomCount } from "../../features/roomApi";
-import { fetchKhachHangCount } from "../../features/auth/userApi";
+import { fetchRooms } from "../../features/roomApi";
+import { fetchDashboardSummary } from "../../features/adminApi";
+import RoomListingsTable from "../../admin/components/RoomListingsTable "; // Adjust the path if necessary
+
+
 const AdminPage = () => {
   const [formattedRooms, setFormattedRooms] = useState([]);
-  const [khachHangCount, setKhachHangCount] = useState(0);
-  const [roomCount, setRoomCount] = useState(0);
+  const [summary, setSummary] = useState({
+    totalRooms: 0,
+    totalUsers: 0,
+    totalAccounts: 0,
+  });
+
   useEffect(() => {
+    // Lấy danh sách phòng
     const loadRooms = async () => {
       try {
         const allRooms = await fetchRooms();
-
-        const transformed = allRooms.map((room, index) => ({
+        const transformed = allRooms.map((room) => ({
           id: room._id,
           title: room.tieuDe,
           code: `${room._id.slice(-4)}/${room.nguoiDang?._id.slice(-4)}`,
           price: `${room.gia.toLocaleString()} đ`,
           type: "Phòng trọ",
           status: room.trangThai === "Còn trống" ? "Hiện" : "Ẩn",
-          date: format(new Date(room.createdAt), "dd/MM/yyyy"),
+          date: new Date(room.createdAt).toLocaleDateString("vi-VN"),
           image: room.hinhAnh?.[0] || "/assets/images/no-image.jpg",
         }));
-
         setFormattedRooms(transformed);
       } catch (error) {
         console.error("Lỗi khi lấy phòng:", error);
       }
     };
-    const loadUserCount = async () => {
-      try {
-        const count = await fetchKhachHangCount();
-        setKhachHangCount(count);
-      } catch (err) {
-        console.error("Lỗi khi lấy số lượng khách hàng:", err);
-      }
-    };
-    const loadCounts = async () => {
-      try {
-        const [userCount, totalRoomCount] = await Promise.all([
-          fetchKhachHangCount(),
-          fetchRoomCount(),
-        ]);
-        setKhachHangCount(userCount);
-        setRoomCount(totalRoomCount);
-      } catch (err) {
-        console.error("Lỗi khi lấy số liệu:", err);
-      }
-    };
 
+    // Lấy tổng số liệu
+    const loadSummary = async () => {
+      try {
+        const data = await fetchDashboardSummary();
+        setSummary(data);
+      } catch (error) {
+        console.error("Lỗi khi lấy số liệu tổng quan:", error);
+      }
+    };
 
     loadRooms();
-    loadUserCount();
-    loadCounts();
+    loadSummary();
   }, []);
 
   return (
@@ -64,26 +55,25 @@ const AdminPage = () => {
         <div className="summary-card">
           <div className="card-header">
             <h3>Tin Phòng</h3>
-            <span className="period">THIS MONTH</span>
+            <span className="period">TỔNG</span>
           </div>
-          <div className="card-value">{roomCount.toLocaleString()}</div>
+          <div className="card-value">{summary.totalRooms.toLocaleString()}</div>
         </div>
 
         <div className="summary-card">
           <div className="card-header">
             <h3>Người Dùng</h3>
-            <span className="period">THIS MONTH</span>
+            <span className="period">TỔNG</span>
           </div>
-          <div className="card-value">{khachHangCount.toLocaleString()}</div>
+          <div className="card-value">{summary.totalUsers.toLocaleString()}</div>
         </div>
-
 
         <div className="summary-card">
           <div className="card-header">
-            <h3>Liên Hệ</h3>
-            <span className="period">MONTHLY GOALS : 1000</span>
+            <h3>Tài Khoản</h3>
+            <span className="period">TỔNG</span>
           </div>
-          <div className="card-value">734</div>
+          <div className="card-value">{summary.totalAccounts.toLocaleString()}</div>
         </div>
       </div>
 

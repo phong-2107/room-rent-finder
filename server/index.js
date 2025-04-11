@@ -10,7 +10,7 @@ const phongTroRoutes = require("./routes/phongTro");
 const diaDiemRoutes = require("./routes/DiaDiem");
 const contactRoutes = require("./routes/lienhe");
 const khachHangRoutes = require("./routes/khachhang");
-
+const adminDashboardRoutes = require("./routes/admin/adminDashboard");
 const permissionsRoutes = require("./routes/permission");
 const rolesRoutes = require("./routes/role");
 
@@ -53,6 +53,6 @@ app.use("/api/roles", rolesRoutes);
 
 
 app.use("/api/admin/rooms", adminRoom);
-
+app.use("/api/admin", adminDashboardRoutes);
 
 module.exports = app; 

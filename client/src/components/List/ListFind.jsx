@@ -69,12 +69,32 @@ const ListFind = ({ filterParams }) => {
         loadRooms();
     }, [filterParams]);
 
+    // Lọc danh sách địa điểm từ danh sách phòng
+    const uniqueLocations = rooms.reduce((acc, room) => {
+        const diaDiem = room.diaDiem;
+        if (
+            diaDiem &&
+            !acc.find(
+                (loc) =>
+                    loc.tinhThanh === diaDiem.tinhThanh &&
+                    loc.quanHuyen === diaDiem.quanHuyen
+            )
+        ) {
+            acc.push(diaDiem);
+        }
+        return acc;
+    }, []);
+
+    // Lọc danh sách địa điểm liên quan dựa trên filterParams
+    const filteredLocations = filterParams?.location
+        ? uniqueLocations.filter((loc) => loc._id === filterParams.location)
+        : uniqueLocations;
 
     // Tính toán dữ liệu cho phân trang
     const totalPages = Math.ceil(rooms.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentRooms = rooms.slice(startIndex, startIndex + itemsPerPage);
-    const diaDiemTuRoom = rooms[0]?.diaDiem;
+
     return (
         <div className="categories-Home">
             <div className="title-3">
@@ -86,16 +106,17 @@ const ListFind = ({ filterParams }) => {
                     <div className="text-wrapper-12">Cho Thuê Phòng Trọ</div>
 
                     <div className="places">
-                    {diaDiemTuRoom && (
-                        <Place
-                            key={diaDiemTuRoom._id}
-                            className="place-instance"
-                            divClassName="design-component-instance-node"
-                            text={diaDiemTuRoom.tinhThanh}
-                            text2={diaDiemTuRoom.quanHuyen}
-                            id={diaDiemTuRoom._id}
-                        />
-                        )}
+                        {/* Hiển thị các địa điểm liên quan */}
+                        {filteredLocations.map((loc) => (
+                            <Place
+                                key={loc._id}
+                                className="place-instance"
+                                divClassName="design-component-instance-node"
+                                text={loc.tinhThanh}
+                                text2={loc.quanHuyen}
+                                id={loc._id}
+                            />
+                        ))}
                     </div>
                 </div>
 
